@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 
-const List = styled.div`
+export const List = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -79,7 +79,7 @@ interface ItemProps {
   completed: boolean;
 }
 
-function Item({ type, title, subTitle, completed }: ItemProps) {
+export function Item({ type, title, subTitle, completed }: ItemProps) {
   return (
     <Container type={type} completed={completed}>
       <Info>
@@ -90,8 +90,3 @@ function Item({ type, title, subTitle, completed }: ItemProps) {
     </Container>
   );
 }
-
-export default {
-  List,
-  Item,
-};

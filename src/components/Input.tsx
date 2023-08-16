@@ -44,3 +44,22 @@ export function TextInput({
     </>
   );
 }
+
+export const ButtonStyle = styled.button`
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-size: 16px;
+  outline: none;
+  background-color: #005bac;
+  color: #fff;
+  cursor: pointer;
+  &:hover {
+    background-color: #004581;
+  }
+  &:disabled {
+    background-color: #ddd;
+    color: #aaa;
+    cursor: not-allowed;
+  }
+`;

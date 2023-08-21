@@ -40,12 +40,12 @@ export function TextInput({
   return (
     <TextContainerStyle className={props.className}>
       <TextInputStyle
-        {...props}
         type="text"
         value={value}
         onChange={onChange}
         placeholder={placeholder}
         error={errorMessage !== ""}
+        {...props}
         className=""
       />
       <ErrorMessageStyle>{errorMessage}</ErrorMessageStyle>

@@ -1,7 +1,13 @@
 import { InputHTMLAttributes } from "react";
 import styled from "styled-components";
 
+const TextContainerStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
 export const TextInputStyle = styled.input<{ error: boolean }>`
+  flex:1;
   border: 1px solid;
   border-radius: 5px;
   padding: 8px 16px;
@@ -11,6 +17,7 @@ export const TextInputStyle = styled.input<{ error: boolean }>`
 `;
 
 const ErrorMessageStyle = styled.p`
+  padding: 3px 16px 0px;
   color: red;
   font-size: 12px;
   margin: 0;
@@ -31,7 +38,7 @@ export function TextInput({
   ...props
 }: TextInputInterface & InputHTMLAttributes<HTMLInputElement>) {
   return (
-    <>
+    <TextContainerStyle>
       <TextInputStyle
         type="text"
         value={value}
@@ -41,14 +48,14 @@ export function TextInput({
         {...props}
       />
       <ErrorMessageStyle>{errorMessage}</ErrorMessageStyle>
-    </>
+    </TextContainerStyle>
   );
 }
 
 export const ButtonStyle = styled.button`
   border: none;
   border-radius: 5px;
-  padding: 8px 16px;
+  padding: 8px 20px;
   font-size: 16px;
   outline: none;
   background-color: #005bac;

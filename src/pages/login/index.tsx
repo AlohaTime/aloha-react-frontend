@@ -1,53 +1,33 @@
 import { useState } from "react";
-import { ButtonStyle, TextInput } from "../../components/Input";
-import { List, Item } from "../../components/Event";
-import { Calendar } from "../../components/Calendar";
+import { Container, Link, LoginButton, StretchedTextInput } from "./styled";
+
 
 function Login() {
   const [id, setId] = useState("");
-  return (
-    <div
-      style={{ display: "flex", gap: 10, padding: 10, flexDirection: "column" }}
-    >
-      <h1>Login</h1>
-      <TextInput
-        value={id}
-        onChange={(e) => setId(e.target.value)}
-        errorMessage="tet"
-        placeholder="Id"
-      ></TextInput>
-      <TextInput
-        value={id}
-        onChange={(e) => setId(e.target.value)}
-        errorMessage=""
-        placeholder="password"
-        type="password"
-      ></TextInput>
-      <ButtonStyle>test</ButtonStyle>
-      <ButtonStyle disabled>test</ButtonStyle>
+  const [idErr, setIdErr] = useState("");
+  const [pw, setPw] = useState("");
+  const [pwErr, setPwErr] = useState("");
 
-      <List>
-        <Item
-          title="컴퓨터공학기초"
-          subTitle={new Date().toLocaleString()}
-          type="과제"
-          completed={false}
-        />
-        <Item
-          title="컴퓨터공학기초"
-          subTitle={new Date().toLocaleString()}
-          type="출석"
-          completed={false}
-        />
-        <Item
-          title="컴퓨터공학기초"
-          subTitle={new Date().toLocaleString()}
-          type="과제"
-          completed={true}
-        />
-      </List>
-      <Calendar />
-    </div>
+  return (
+    <Container>
+      <h1>Aloha Time</h1>
+      <StretchedTextInput
+        value={id}
+        onChange={(e) => setId(e.target.value)}
+        errorMessage={idErr}
+        placeholder="학번"
+      ></StretchedTextInput>
+      <StretchedTextInput
+        value={pw}
+        onChange={(e) => setPw(e.target.value)}
+        errorMessage={pwErr}
+        placeholder="비밀번호"
+        type="password"
+      ></StretchedTextInput>
+      <LoginButton>로그인</LoginButton>
+      <Link>회원가입</Link>
+      <Link>ID/PW 찾기</Link>
+    </Container>
   );
 }
 

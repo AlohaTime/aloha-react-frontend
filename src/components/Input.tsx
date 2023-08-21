@@ -38,14 +38,15 @@ export function TextInput({
   ...props
 }: TextInputInterface & InputHTMLAttributes<HTMLInputElement>) {
   return (
-    <TextContainerStyle>
+    <TextContainerStyle className={props.className}>
       <TextInputStyle
+        {...props}
         type="text"
         value={value}
         onChange={onChange}
         placeholder={placeholder}
         error={errorMessage !== ""}
-        {...props}
+        className=""
       />
       <ErrorMessageStyle>{errorMessage}</ErrorMessageStyle>
     </TextContainerStyle>

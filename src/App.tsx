@@ -6,7 +6,7 @@ import {
   ROUTES_PATH_ROOT,
 } from "./constants/Routes";
 import Home from "./pages/Home";
-import Login from "./pages";
+import Login from "./pages/login";
 
 function App() {
   return (

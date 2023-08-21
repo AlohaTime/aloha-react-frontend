@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { ButtonStyle, TextInput } from "../components/Input";
-import { List, Item } from "../components/Event";
-import { Calendar } from "../components/Calendar";
+import { ButtonStyle, TextInput } from "../../components/Input";
+import { List, Item } from "../../components/Event";
+import { Calendar } from "../../components/Calendar";
 
 function Login() {
   const [id, setId] = useState("");

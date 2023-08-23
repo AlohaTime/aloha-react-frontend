@@ -72,7 +72,7 @@ const Type = styled.span`
   text-align: left;
 `;
 
-interface ItemProps {
+export interface ItemProps {
   type: string;
   title: string;
   subTitle: string;

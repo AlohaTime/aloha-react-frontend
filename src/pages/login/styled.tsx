@@ -14,6 +14,10 @@ export const Container = styled.div`
   align-self: stretch;
 `;
 
+export const Logo = styled.img`
+  margin-bottom: 20px;
+`
+
 export const StretchedTextInput = styled(TextInput)`
   width: 100%;
 `;

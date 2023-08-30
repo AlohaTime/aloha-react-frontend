@@ -6,13 +6,13 @@ import { HomeContainer, StretchedList } from "./styled";
 function Home() {
   const [events, setEvents] = useState<ItemProps[]>([
     {
-      title: "컴퓨터공학기초",
+      title: "일반 수학1",
       subTitle: "2023.06.30 23:55",
       type: "출석",
       completed: false,
     },
     {
-      title: "컴퓨터공학기초",
+      title: "프로네시스세미나",
       subTitle: "2023.06.30 23:55",
       type: "과제",
       completed: false,
@@ -26,7 +26,7 @@ function Home() {
     {
       title: "컴퓨터공학기초",
       subTitle: "2023.06.30 23:55",
-      type: "출석",
+      type: "과제",
       completed: true,
     },
   ]);
@@ -34,9 +34,9 @@ function Home() {
     <HomeContainer>
       <Calendar></Calendar>
       <StretchedList>
-        {events.map((event) => (
+        {events.map((event, idx) => (
           <Item
-            key={event.title}
+            key={idx}
             type={event.type}
             title={event.title}
             subTitle={event.subTitle}

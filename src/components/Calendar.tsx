@@ -1,6 +1,8 @@
 import * as RC from "react-calendar";
 import { styled } from "styled-components";
 import "react-calendar/dist/Calendar.css";
+import { useState } from "react";
+import { useSwipeable } from "react-swipeable";
 
 const CalendarContainer = styled.div`
   .react-calendar {
@@ -37,10 +39,29 @@ const CalendarContainer = styled.div`
   }
 `;
 
+
+type ValuePiece = Date | null;
+
+type Value = ValuePiece | [ValuePiece, ValuePiece];
+
 export function Calendar(props: RC.CalendarProps) {
+  const [date, setDate] = useState<Value>(new Date());
+
+  const changeMonth = (delta: number): void => {
+    const newDate = new Date(date?.toString() || "");
+    newDate.setMonth(newDate.getMonth() + delta);
+    setDate(newDate);
+  };
+
+  const handlers = useSwipeable({
+    onSwipedLeft: () => changeMonth(1),
+    onSwipedRight: () => changeMonth(-1),
+    trackMouse: true
+  });
+
   return (
-    <CalendarContainer>
-      <RC.Calendar {...props} locale="en" />
+    <CalendarContainer {...handlers}>
+      <RC.Calendar {...props} locale="en" value={date} onChange={setDate} />
     </CalendarContainer>
   );
 }

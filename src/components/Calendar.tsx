@@ -10,15 +10,20 @@ const CalendarContainer = styled.div`
   .react-calendar__tile {
     background-color: unset !important;
     abbr {
+      display: block;
       aspect-ratio: 1 / 1;
       border-radius: 50%;
-      color: #222;
       padding: 10px;
     }
   }
 
   .react-calendar__tile--active abbr {
     background: #d9edff;
+    color: #222;
+  }
+  .react-calendar__tile--active.react-calendar__month-view__days__day--weekend
+    abbr {
+    background: #ffcece;
   }
 
   .react-calendar__tile--now abbr {

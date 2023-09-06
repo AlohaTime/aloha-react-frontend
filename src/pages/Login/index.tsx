@@ -1,6 +1,11 @@
 import { useState } from "react";
-import { Container, Link, LoginButton, Logo, StretchedTextInput } from "./styled";
-
+import {
+  Container,
+  Link,
+  LoginButton,
+  Logo,
+  StretchedTextInput,
+} from "./styled";
 
 function Login() {
   const [id, setId] = useState("");
@@ -10,7 +15,7 @@ function Login() {
 
   return (
     <Container>
-      <Logo src="/logo192.png" />
+      <Logo src="/logo512.png" />
       <StretchedTextInput
         value={id}
         onChange={(e) => setId(e.target.value)}

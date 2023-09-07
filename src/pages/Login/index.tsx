@@ -15,7 +15,7 @@ function Login() {
 
   return (
     <Container>
-      <Logo src="/logo512.png" />
+      <Logo src="/logo.png" />
       <StretchedTextInput
         value={id}
         onChange={(e) => setId(e.target.value)}

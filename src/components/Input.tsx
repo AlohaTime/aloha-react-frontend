@@ -4,14 +4,14 @@ import styled from "styled-components";
 const TextContainerStyle = styled.div`
   display: flex;
   flex-direction: column;
-`
+`;
 
 export const TextInputStyle = styled.input<{ error: boolean }>`
-  flex:1;
+  flex: 1;
   border: 1px solid;
   border-radius: 5px;
   padding: 8px 16px;
-  font-size: 16px;
+  font-size: 12px;
   outline: none;
   border-color: ${(props) => (props.error ? "red" : "#ddd")};
 `;
@@ -59,11 +59,11 @@ export const ButtonStyle = styled.button`
   padding: 8px 20px;
   font-size: 16px;
   outline: none;
-  background-color: #005bac;
+  background-color: #5886c7;
   color: #fff;
   cursor: pointer;
   &:hover {
-    background-color: #004581;
+    background-color: #345b88;
   }
   &:disabled {
     background-color: #ddd;

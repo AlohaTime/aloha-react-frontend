@@ -6,14 +6,14 @@ const TextContainerStyle = styled.div`
   flex-direction: column;
 `;
 
-export const TextInputStyle = styled.input<{ error: boolean }>`
+export const TextInputStyle = styled.input<{ $error: boolean }>`
   flex: 1;
   border: 1px solid;
   border-radius: 5px;
   padding: 8px 16px;
   font-size: 12px;
   outline: none;
-  border-color: ${(props) => (props.error ? "red" : "#ddd")};
+  border-color: ${(props) => (props.$error ? "red" : "#ddd")};
 `;
 
 const ErrorMessageStyle = styled.p`
@@ -44,7 +44,7 @@ export function TextInput({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        error={errorMessage !== ""}
+        $error={errorMessage !== ""}
         {...props}
         className=""
       />

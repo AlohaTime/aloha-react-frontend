@@ -15,7 +15,6 @@ export const Container = styled.div`
 `;
 
 export const Logo = styled.img`
-  margin-bottom: 20px;
   width: 200px;
 `;
 

@@ -9,7 +9,7 @@ export const List = styled.div`
   gap: 10px;
 `;
 
-const Container = styled.div<{ type: string; completed: boolean }>`
+const Container = styled.div<{ type: string; $completed: boolean }>`
   box-sizing: border-box;
   display: flex;
   padding: 10px 20px;
@@ -22,12 +22,12 @@ const Container = styled.div<{ type: string; completed: boolean }>`
   border: 1px solid #eee;
   border-left: 5px solid
     ${(props) => {
-      if (props.completed) return "#999999";
+      if (props.$completed) return "#999999";
       if (props.type === "출석") return "#BCDBC6";
       if (props.type === "과제") return "#F6BCBC";
     }};
   & span {
-    text-decoration: ${(props) => (props.completed ? "line-through" : "none")};
+    text-decoration: ${(props) => (props.$completed ? "line-through" : "none")};
   }
 `;
 
@@ -81,7 +81,7 @@ export interface ItemProps {
 
 export function Item({ type, title, subTitle, completed }: ItemProps) {
   return (
-    <Container type={type} completed={completed}>
+    <Container type={type} $completed={completed}>
       <Info>
         <Title>{title}</Title>
         <SubTitle>{subTitle}</SubTitle>

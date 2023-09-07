@@ -29,6 +29,6 @@ export const LoginButton = styled(ButtonStyle)`
 `;
 
 export const Link = styled.a`
-  font-size: 12px;
+  font-size: 10px;
   color: #333;
 `;

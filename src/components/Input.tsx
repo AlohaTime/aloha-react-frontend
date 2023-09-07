@@ -11,7 +11,7 @@ export const TextInputStyle = styled.input<{ error: boolean }>`
   border: 1px solid;
   border-radius: 5px;
   padding: 8px 16px;
-  font-size: 16px;
+  font-size: 12px;
   outline: none;
   border-color: ${(props) => (props.error ? "red" : "#ddd")};
 `;
@@ -57,7 +57,7 @@ export const ButtonStyle = styled.button`
   border: none;
   border-radius: 5px;
   padding: 8px 20px;
-  font-size: 16px;
+  font-size: 12px;
   outline: none;
   background-color: #005bac;
   color: #fff;

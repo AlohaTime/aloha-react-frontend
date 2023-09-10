@@ -4,6 +4,7 @@ import {
   Link,
   LoginButton,
   Logo,
+  Message,
   StretchedTextInput,
 } from "./styled";
 
@@ -20,7 +21,7 @@ function Login() {
         value={id}
         onChange={(e) => setId(e.target.value)}
         errorMessage={idErr}
-        placeholder="학번"
+        placeholder="아이디"
       ></StretchedTextInput>
       <StretchedTextInput
         value={pw}
@@ -30,8 +31,11 @@ function Login() {
         type="password"
       ></StretchedTextInput>
       <LoginButton>로그인</LoginButton>
-      <Link>회원가입</Link>
-      <Link>ID/PW 찾기</Link>
+      <Link>아이디/비밀번호 찾기</Link>
+      <Message>
+        Aloha Time은 인하대학교 학생만 사용이 가능합니다.<br />
+        I-Class 계정으로 로그인이 가능합니다.
+      </Message>
     </Container>
   );
 }

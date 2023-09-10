@@ -31,3 +31,9 @@ export const Link = styled.a`
   font-size: 10px;
   color: #333;
 `;
+
+export const Message = styled.span`
+  font-size: 10px;
+  color: #999;
+  text-align: center;
+`

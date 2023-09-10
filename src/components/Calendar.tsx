@@ -1,72 +1,106 @@
-import * as RC from "react-calendar";
 import { styled } from "styled-components";
-import "react-calendar/dist/Calendar.css";
 import { useState } from "react";
-import { useSwipeable } from "react-swipeable";
+import { PillButton } from "./Input";
 
-const CalendarContainer = styled.div`
-  .react-calendar {
-    width: 100%;
-    border: none;
-  }
-  .react-calendar__tile {
-    background-color: unset !important;
-    abbr {
-      display: block;
-      aspect-ratio: 1 / 1;
-      border-radius: 50%;
-      padding: 10px;
+const Container = styled.div`
+  display: flex;
+  width: 100%;
+  padding: 12px 30px;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+`
+
+const Header = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+`
+
+const MonthYearText = styled.h1`
+  color: #000;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`
+
+const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+`
+
+const Month = styled.div`
+  display: grid;
+  grid-template-columns: repeat(7, 32px);
+  justify-content: space-between;
+  row-gap: 20px;
+  width: 100%;
+`
+
+const DayOfTheWeek = styled.div`
+  color: #666;
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+`
+const Day = styled.div<{ $iscurrentmonth: boolean, $isToday: boolean, $selected: boolean }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1/1;
+  text-align: center; 
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  color: ${(props) => {
+    if (props.$isToday) {
+      return "#fff"
     }
-  }
+    if (props.$iscurrentmonth || props.$selected) {
+      return "#333"
+    }
+    return "#999"
+  }};
+  border-radius: 50%;
+  background-color: ${(props) => {
+    if (props.$isToday) {
+      return "#5886c7"
+    }
+    if (props.$selected) {
+      return "#D9EDFF"
+    }
+    return "transparent"
+  }};
+`
 
-  .react-calendar__tile--active abbr {
-    background: #d9edff;
-    color: #222;
-  }
-  .react-calendar__tile--active.react-calendar__month-view__days__day--weekend
-    abbr {
-    background: #ffcece;
-  }
+const dayOfTheWeek = ["일", "월", "화", "수", "목", "금", "토"]
 
-  .react-calendar__tile--now abbr {
-    background-color: #005bac;
-    color: #fff;
-  }
-  .react-calendar__navigation__label__labelText {
-    color: #222;
-    font-size: 1.3rem;
-    font-weight: bold;
-  }
-  .react-calendar__month-view__weekdays__weekday abbr {
-    color: #222;
-    font-weight: bold;
-    text-decoration: unset;
-  }
-`;
-
-
-type ValuePiece = Date | null;
-
-type Value = ValuePiece | [ValuePiece, ValuePiece];
-
-export function Calendar(props: RC.CalendarProps) {
-  const [date, setDate] = useState<Value>(new Date());
-
-  const changeMonth = (delta: number): void => {
-    const newDate = new Date(date?.toString() || "");
-    newDate.setMonth(newDate.getMonth() + delta);
-    setDate(newDate);
-  };
-
-  const handlers = useSwipeable({
-    onSwipedLeft: () => changeMonth(1),
-    onSwipedRight: () => changeMonth(-1),
-    trackMouse: true
-  });
-
+export const Calendar = () => {
   return (
-    <CalendarContainer {...handlers}>
-      <RC.Calendar {...props} locale="en" value={date} onChange={setDate} />
-    </CalendarContainer>
-  );
+    <Container>
+      <Header>
+        <MonthYearText>9월, 2023</MonthYearText>
+        <ButtonContainer>
+          <PillButton>&lt;</PillButton>
+          <PillButton>&gt;</PillButton>
+          <PillButton>오늘</PillButton>
+        </ButtonContainer>
+      </Header>
+      <Month>
+        {
+          dayOfTheWeek.map((day, idx) => (
+            <DayOfTheWeek key={idx}>{day}</DayOfTheWeek>
+          ))
+        }
+        {[27, 28, 29, 30, 31, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 1, 2, 3, 4, 5, 6, 7].map((day, idx) => (
+          <Day key={idx} $iscurrentmonth={idx > 4 && idx < 35} $isToday={day === 8} $selected={day === 13}>{day}</Day>
+        ))}
+      </Month>
+    </Container>
+  )
 }

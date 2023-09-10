@@ -6,7 +6,7 @@ export const HomeContainer = styled.div`
   flex-direction: column;
   align-items: center;
   height: 100%;
-  padding: 20px;
+  padding: 0px 30px;
 `;
 
 export const StretchedList = styled(List)`

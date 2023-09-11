@@ -35,6 +35,30 @@ function Home() {
       type: "과제",
       completed: true,
     },
+    {
+      title: "컴퓨터공학기초",
+      subTitle: "2023.06.30 23:55",
+      type: "과제",
+      completed: true,
+    },
+    {
+      title: "컴퓨터공학기초",
+      subTitle: "2023.06.30 23:55",
+      type: "과제",
+      completed: true,
+    },
+    {
+      title: "컴퓨터공학기초",
+      subTitle: "2023.06.30 23:55",
+      type: "과제",
+      completed: true,
+    },
+    {
+      title: "컴퓨터공학기초",
+      subTitle: "2023.06.30 23:55",
+      type: "퀴즈",
+      completed: true,
+    },
   ]);
   return (
     <HomeContainer>

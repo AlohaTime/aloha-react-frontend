@@ -8,6 +8,7 @@ export const List = styled.div`
   padding-top: 12px;
   gap: 12px;
   background-color: #fff;
+  overflow-y: auto;
 `;
 
 const Container = styled.div`

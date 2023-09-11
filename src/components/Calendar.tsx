@@ -9,6 +9,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 15px;
+  background-color: #fff;
 `
 
 const Header = styled.div`

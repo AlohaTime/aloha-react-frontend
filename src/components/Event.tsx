@@ -4,9 +4,10 @@ export const List = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   padding-top: 12px;
   gap: 12px;
+  background-color: #fff;
 `;
 
 const Container = styled.div`
@@ -14,6 +15,11 @@ const Container = styled.div`
   width: 100%;
   align-items: stretch;
   gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee;
+  &:last-child {
+    border-bottom: none;
+  }
 `;
 
 const Tag = styled.div<{ type: string }>`
@@ -39,8 +45,8 @@ const Info = styled.div`
   flex-direction: column;
 `;
 
-const Title = styled.span`
-  color: #222;
+const Title = styled.span<{ $completed: boolean }>`
+  color: ${props => props.$completed ? '#999' : '#222'};
   font-size: 12px;
 `;
 
@@ -49,8 +55,11 @@ const SubTitle = styled.span`
   font-size: 10px;
 `;
 
-const Type = styled.span`
-  color: #555;
+const Type = styled.span<{ $completed: boolean }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${props => props.$completed ? '#999' : '#555'};
   font-size: 10px;
 `;
 
@@ -66,10 +75,10 @@ export function Item({ type, title, subTitle, completed }: ItemProps) {
     <Container>
       <Tag type={completed ? "완료" : type} />
       <Info>
-        <Title>{title}</Title>
+        <Title $completed={completed}>{title}</Title>
         <SubTitle>{subTitle}</SubTitle>
       </Info>
-      <Type>{type}</Type>
+      <Type $completed={completed}>{type}</Type>
     </Container>
   );
 }

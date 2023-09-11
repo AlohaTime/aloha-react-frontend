@@ -14,6 +14,12 @@ function Home() {
     {
       title: "프로네시스세미나",
       subTitle: "2023.06.30 23:55",
+      type: "퀴즈",
+      completed: false,
+    },
+    {
+      title: "프로네시스세미나",
+      subTitle: "2023.06.30 23:55",
       type: "과제",
       completed: false,
     },

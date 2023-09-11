@@ -5,71 +5,53 @@ export const List = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 30px;
-  gap: 10px;
+  padding-top: 12px;
+  gap: 12px;
 `;
 
-const Container = styled.div<{ type: string; $completed: boolean }>`
-  box-sizing: border-box;
+const Container = styled.div`
   display: flex;
-  padding: 10px 20px;
   width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  align-content: center;
-  flex-wrap: wrap;
-  border-radius: 5px;
-  border: 1px solid #eee;
-  border-left: 5px solid
-    ${(props) => {
-      if (props.$completed) return "#999999";
-      if (props.type === "출석") return "#BCDBC6";
-      if (props.type === "과제") return "#F6BCBC";
-    }};
-  & span {
-    text-decoration: ${(props) => (props.$completed ? "line-through" : "none")};
-  }
+  align-items: stretch;
+  gap: 12px;
+`;
+
+const Tag = styled.div<{ type: string }>`
+  width: 3px;
+  border-radius: 3px;
+  background-color: ${(props) => {
+    switch (props.type) {
+      case "출석":
+        return "#FF97AE";
+      case "퀴즈":
+        return "#F8D47A";
+      case "과제":
+        return "#C3F07B";
+      default:
+        return "#C2C2C2";
+    }
+  }};
 `;
 
 const Info = styled.div`
   display: flex;
-  width: 173.5px;
+  flex: 1;
   flex-direction: column;
-  align-items: flex-start;
-  flex-shrink: 0;
 `;
 
 const Title = styled.span`
   color: #222;
-  font-family: AppleSDGothicNeoB00;
-  font-size: 13px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
+  font-size: 12px;
 `;
 
 const SubTitle = styled.span`
   color: #999;
-  font-family: AppleSDGothicNeoSB00;
   font-size: 10px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
 `;
 
 const Type = styled.span`
   color: #555;
-  font-family: AppleSDGothicNeoSB00;
   font-size: 10px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
 `;
 
 export interface ItemProps {
@@ -81,7 +63,8 @@ export interface ItemProps {
 
 export function Item({ type, title, subTitle, completed }: ItemProps) {
   return (
-    <Container type={type} $completed={completed}>
+    <Container>
+      <Tag type={completed ? "완료" : type} />
       <Info>
         <Title>{title}</Title>
         <SubTitle>{subTitle}</SubTitle>

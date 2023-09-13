@@ -5,10 +5,9 @@ export const List = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: start;
-  padding-top: 12px;
-  gap: 12px;
   background-color: #fff;
   overflow-y: auto;
+  scroll-snap-type: y mandatory;
 `;
 
 const Container = styled.div`
@@ -16,8 +15,9 @@ const Container = styled.div`
   width: 100%;
   align-items: stretch;
   gap: 12px;
-  padding-bottom: 12px;
+  padding: 12px 0px;
   border-bottom: 1px solid #eee;
+  scroll-snap-align: start;
   &:last-child {
     border-bottom: none;
   }
@@ -47,7 +47,7 @@ const Info = styled.div`
 `;
 
 const Title = styled.span<{ $completed: boolean }>`
-  color: ${props => props.$completed ? '#999' : '#222'};
+  color: ${(props) => (props.$completed ? "#999" : "#222")};
   font-size: 12px;
 `;
 
@@ -60,7 +60,7 @@ const Type = styled.span<{ $completed: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${props => props.$completed ? '#999' : '#555'};
+  color: ${(props) => (props.$completed ? "#999" : "#555")};
   font-size: 10px;
 `;
 

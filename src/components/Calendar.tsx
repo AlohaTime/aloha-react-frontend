@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import { useState } from "react";
 import { PillButton } from "./Input";
+import { getCalendarDate, toMonthYear } from "utils/Date";
 
 const Container = styled.div`
   display: flex;
@@ -10,14 +11,14 @@ const Container = styled.div`
   align-items: center;
   gap: 15px;
   background-color: #fff;
-`
+`;
 
 const Header = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: center;
-`
+`;
 
 const MonthYearText = styled.h1`
   color: #000;
@@ -25,13 +26,13 @@ const MonthYearText = styled.h1`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-`
+`;
 
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
-`
+`;
 
 const Month = styled.div`
   display: grid;
@@ -39,7 +40,7 @@ const Month = styled.div`
   justify-content: space-between;
   row-gap: 20px;
   width: 100%;
-`
+`;
 
 const DayOfTheWeek = styled.div`
   color: #666;
@@ -47,61 +48,127 @@ const DayOfTheWeek = styled.div`
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
-`
-const Day = styled.div<{ $iscurrentmonth: boolean, $isToday: boolean, $selected: boolean }>`
+`;
+const Day = styled.div<{
+  $iscurrentmonth: boolean;
+  $isToday: boolean;
+  $selected: boolean;
+}>`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   aspect-ratio: 1/1;
-  text-align: center; 
+  text-align: center;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
   color: ${(props) => {
     if (props.$isToday) {
-      return "#fff"
+      return "#fff";
     }
     if (props.$iscurrentmonth || props.$selected) {
-      return "#333"
+      return "#333";
     }
-    return "#999"
+    return "#999";
   }};
   border-radius: 50%;
   background-color: ${(props) => {
     if (props.$isToday) {
-      return "#5886c7"
+      return "#5886c7";
     }
     if (props.$selected) {
-      return "#D9EDFF"
+      return "#D9EDFF";
     }
-    return "transparent"
+    return "transparent";
   }};
-`
+`;
 
-const dayOfTheWeek = ["일", "월", "화", "수", "목", "금", "토"]
+interface DayCalendarProps {
+  viewDate: Date;
+  selectedDate: Date;
+  setSelectedDate: (date: Date) => void;
+}
+
+const dayOfTheWeek = ["일", "월", "화", "수", "목", "금", "토"];
+
+const DayCalendar = ({
+  viewDate,
+  selectedDate,
+  setSelectedDate,
+}: DayCalendarProps) => {
+  const today = new Date();
+  const todayMonth = today.getMonth();
+  const todayDate = today.getDate();
+  return (
+    <>
+      {getCalendarDate(viewDate).map((date, idx) => {
+        const month = date.getMonth();
+        const day = date.getDate();
+        const isCurrentMonth = month === viewDate.getMonth();
+        const isToday = month === todayMonth && day === todayDate;
+        const isSelected =
+          month === selectedDate.getMonth() && day === selectedDate.getDate();
+        return (
+          <Day
+            key={idx}
+            $iscurrentmonth={isCurrentMonth}
+            $isToday={isToday}
+            $selected={isSelected}
+            onClick={() => setSelectedDate(new Date(date))}
+          >
+            {day}
+          </Day>
+        );
+      })}
+    </>
+  );
+};
 
 export const Calendar = () => {
+  const [viewDate, setViewDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const prevViewDate = () => {
+    setViewDate((prev) => {
+      const prevMonthDate = new Date(prev);
+      prevMonthDate.setMonth(prevMonthDate.getMonth() - 1);
+      return prevMonthDate;
+    });
+  };
+
+  const nextViewDate = () => {
+    setViewDate((prev) => {
+      const nextMonthDate = new Date(prev);
+      nextMonthDate.setMonth(nextMonthDate.getMonth() + 1);
+      return nextMonthDate;
+    });
+  };
+
+  const todayViewDate = () => {
+    setViewDate(new Date());
+  };
+
   return (
     <Container>
       <Header>
-        <MonthYearText>9월, 2023</MonthYearText>
+        <MonthYearText>{toMonthYear(viewDate)}</MonthYearText>
         <ButtonContainer>
-          <PillButton>&lt;</PillButton>
-          <PillButton>&gt;</PillButton>
-          <PillButton>오늘</PillButton>
+          <PillButton onClick={prevViewDate}>&lt;</PillButton>
+          <PillButton onClick={nextViewDate}>&gt;</PillButton>
+          <PillButton onClick={todayViewDate}>오늘</PillButton>
         </ButtonContainer>
       </Header>
       <Month>
-        {
-          dayOfTheWeek.map((day, idx) => (
-            <DayOfTheWeek key={idx}>{day}</DayOfTheWeek>
-          ))
-        }
-        {[27, 28, 29, 30, 31, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 1, 2, 3, 4, 5, 6, 7].map((day, idx) => (
-          <Day key={idx} $iscurrentmonth={idx > 4 && idx < 35} $isToday={day === 8} $selected={day === 13}>{day}</Day>
+        {dayOfTheWeek.map((day, idx) => (
+          <DayOfTheWeek key={idx}>{day}</DayOfTheWeek>
         ))}
+        <DayCalendar
+          viewDate={viewDate}
+          selectedDate={selectedDate}
+          setSelectedDate={setSelectedDate}
+        />
       </Month>
     </Container>
-  )
-}
+  );
+};

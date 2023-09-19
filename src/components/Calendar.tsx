@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PillButton } from "./Input";
 import { getCalendarDate, toMonthYear } from "utils/Date";
 
@@ -34,12 +34,26 @@ const ButtonContainer = styled.div`
   gap: 5px;
 `;
 
+const ScrollContainer = styled.div`
+  display: flex;
+  width: 100%;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  gap: 30px;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
 const Month = styled.div`
   display: grid;
-  grid-template-columns: repeat(7, 32px);
+  grid-template-columns: repeat(7, 1fr);
   justify-content: space-between;
-  row-gap: 20px;
+  gap: 20px;
   width: 100%;
+  min-width: 100%;
+  scroll-snap-align: start;
 `;
 
 const DayOfTheWeekContainer = styled.div`
@@ -143,6 +157,7 @@ const DayCalendar = ({
 };
 
 export const Calendar = () => {
+  const scrollRef = useRef<HTMLDivElement | null>(null);
   const [viewDate, setViewDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -168,6 +183,34 @@ export const Calendar = () => {
     setSelectedDate(today);
   };
 
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      const container = scrollRef.current;
+      const scrollLeft = container.scrollLeft;
+      const scrollWidth = container.scrollWidth;
+      const containerWidth = container.clientWidth;
+
+      if (scrollLeft === 0)
+        setViewDate(
+          (pre) => new Date(new Date(pre).setMonth(pre.getMonth() - 1))
+        );
+
+      if (scrollLeft + containerWidth === scrollWidth)
+        setViewDate(
+          (pre) => new Date(new Date(pre).setMonth(pre.getMonth() + 1))
+        );
+    }
+  };
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      const container = scrollRef.current;
+      const scrollWidth = container.scrollWidth;
+      const containerWidth = container.clientWidth;
+      scrollRef.current.scrollLeft = (scrollWidth - containerWidth) / 2;
+    }
+  }, [viewDate]);
+
   return (
     <Container>
       <Header>
@@ -178,15 +221,39 @@ export const Calendar = () => {
           <PillButton onClick={todayViewDate}>오늘</PillButton>
         </ButtonContainer>
       </Header>
-      <Month>
-        <DayOfTheWeek />
-        <DayCalendar
-          viewDate={viewDate}
-          setViewDate={setViewDate}
-          selectedDate={selectedDate}
-          setSelectedDate={setSelectedDate}
-        />
-      </Month>
+      <ScrollContainer ref={scrollRef} onScroll={handleScroll}>
+        <Month>
+          <DayOfTheWeek />
+          <DayCalendar
+            viewDate={
+              new Date(new Date(viewDate).setMonth(viewDate.getMonth() - 1))
+            }
+            setViewDate={() => {}}
+            selectedDate={selectedDate}
+            setSelectedDate={() => {}}
+          />
+        </Month>
+        <Month>
+          <DayOfTheWeek />
+          <DayCalendar
+            viewDate={viewDate}
+            setViewDate={setViewDate}
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate}
+          />
+        </Month>
+        <Month>
+          <DayOfTheWeek />
+          <DayCalendar
+            viewDate={
+              new Date(new Date(viewDate).setMonth(viewDate.getMonth() + 1))
+            }
+            setViewDate={() => {}}
+            selectedDate={selectedDate}
+            setSelectedDate={() => {}}
+          />
+        </Month>
+      </ScrollContainer>
     </Container>
   );
 };

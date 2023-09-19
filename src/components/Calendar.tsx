@@ -42,7 +42,7 @@ const Month = styled.div`
   width: 100%;
 `;
 
-const DayOfTheWeek = styled.div`
+const DayOfTheWeekContainer = styled.div`
   color: #666;
   text-align: center;
   font-size: 12px;
@@ -92,6 +92,16 @@ interface DayCalendarProps {
 }
 
 const dayOfTheWeek = ["일", "월", "화", "수", "목", "금", "토"];
+
+const DayOfTheWeek = () => {
+  return (
+    <>
+      {dayOfTheWeek.map((day, idx) => (
+        <DayOfTheWeekContainer key={idx}>{day}</DayOfTheWeekContainer>
+      ))}
+    </>
+  );
+};
 
 const DayCalendar = ({
   viewDate,
@@ -169,9 +179,7 @@ export const Calendar = () => {
         </ButtonContainer>
       </Header>
       <Month>
-        {dayOfTheWeek.map((day, idx) => (
-          <DayOfTheWeek key={idx}>{day}</DayOfTheWeek>
-        ))}
+        <DayOfTheWeek />
         <DayCalendar
           viewDate={viewDate}
           setViewDate={setViewDate}

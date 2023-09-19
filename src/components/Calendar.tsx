@@ -86,6 +86,7 @@ const Day = styled.div<{
 
 interface DayCalendarProps {
   viewDate: Date;
+  setViewDate: (date: Date) => void;
   selectedDate: Date;
   setSelectedDate: (date: Date) => void;
 }
@@ -94,6 +95,7 @@ const dayOfTheWeek = ["일", "월", "화", "수", "목", "금", "토"];
 
 const DayCalendar = ({
   viewDate,
+  setViewDate,
   selectedDate,
   setSelectedDate,
 }: DayCalendarProps) => {
@@ -115,7 +117,12 @@ const DayCalendar = ({
             $iscurrentmonth={isCurrentMonth}
             $isToday={isToday}
             $selected={isSelected}
-            onClick={() => setSelectedDate(new Date(date))}
+            onClick={() => {
+              setSelectedDate(new Date(date));
+              if (!isCurrentMonth) {
+                setViewDate(new Date(date));
+              }
+            }}
           >
             {day}
           </Day>
@@ -146,7 +153,9 @@ export const Calendar = () => {
   };
 
   const todayViewDate = () => {
-    setViewDate(new Date());
+    const today = new Date();
+    setViewDate(today);
+    setSelectedDate(today);
   };
 
   return (
@@ -165,6 +174,7 @@ export const Calendar = () => {
         ))}
         <DayCalendar
           viewDate={viewDate}
+          setViewDate={setViewDate}
           selectedDate={selectedDate}
           setSelectedDate={setSelectedDate}
         />

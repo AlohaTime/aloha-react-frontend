@@ -5,7 +5,7 @@ export const toMonthYear = (date: Date) => {
 export const getCalendarDate = (date: Date) => {
   const newDate = new Date(date);
   newDate.setDate(1);
-  newDate.setDate(newDate.getDate() - newDate.getDay());
+  newDate.setDate(newDate.getDate() - (newDate.getDay() || 7));
   const dateArray = [new Date(newDate)];
   for (let i = 0; i < 41; i++) {
     newDate.setDate(newDate.getDate() + 1);

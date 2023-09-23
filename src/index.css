@@ -14,12 +14,6 @@ code {
 }
 
 @font-face {
-  font-family: "baloo";
-  src: url("/public/fonts/Baloo2-VariableFont_wght.ttf");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
   font-family: "tmoney";
   src: url("/public/fonts/TmoneyRoundWindRegular.ttf");
   font-weight: normal;

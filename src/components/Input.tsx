@@ -54,10 +54,14 @@ export function TextInput({
 }
 
 export const ButtonStyle = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   border-radius: 5px;
   padding: 8px 20px;
   font-size: 12px;
+  line-height: 12px;
   outline: none;
   background-color: #5886c7;
   color: #fff;
@@ -81,4 +85,4 @@ export const PillButton = styled.button`
   padding: 4px 10px;
   background: #f9f9f9;
   color: #5886c7;
-`
+`;

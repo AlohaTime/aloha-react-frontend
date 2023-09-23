@@ -1,18 +1,17 @@
 {
   "files": {
-    "main.css": "/aloha-react-frontend/static/css/main.5f4d3105.css",
-    "main.js": "/aloha-react-frontend/static/js/main.d5e39e53.js",
+    "main.css": "/aloha-react-frontend/static/css/main.0188b6d5.css",
+    "main.js": "/aloha-react-frontend/static/js/main.684f467a.js",
     "static/js/787.78bf7bf5.chunk.js": "/aloha-react-frontend/static/js/787.78bf7bf5.chunk.js",
     "static/media/TmoneyRoundWindExtraBold.ttf": "/aloha-react-frontend/static/media/TmoneyRoundWindExtraBold.9f066654a62d2482c049.ttf",
     "static/media/TmoneyRoundWindRegular.ttf": "/aloha-react-frontend/static/media/TmoneyRoundWindRegular.18aaa02c5151011453a0.ttf",
-    "static/media/Baloo2-VariableFont_wght.ttf": "/aloha-react-frontend/static/media/Baloo2-VariableFont_wght.5a31c7e5b6cad40ecc7e.ttf",
     "index.html": "/aloha-react-frontend/index.html",
-    "main.5f4d3105.css.map": "/aloha-react-frontend/static/css/main.5f4d3105.css.map",
-    "main.d5e39e53.js.map": "/aloha-react-frontend/static/js/main.d5e39e53.js.map",
+    "main.0188b6d5.css.map": "/aloha-react-frontend/static/css/main.0188b6d5.css.map",
+    "main.684f467a.js.map": "/aloha-react-frontend/static/js/main.684f467a.js.map",
     "787.78bf7bf5.chunk.js.map": "/aloha-react-frontend/static/js/787.78bf7bf5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5f4d3105.css",
-    "static/js/main.d5e39e53.js"
+    "static/css/main.0188b6d5.css",
+    "static/js/main.684f467a.js"
   ]
 }

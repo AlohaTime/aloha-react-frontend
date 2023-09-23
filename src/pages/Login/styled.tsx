@@ -13,6 +13,7 @@ export const Container = styled.div`
   gap: 12px;
   align-self: stretch;
   max-width: 576px;
+  margin: 0 auto;
 `;
 
 export const Logo = styled.img`

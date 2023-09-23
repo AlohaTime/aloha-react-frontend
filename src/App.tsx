@@ -7,12 +7,25 @@ import {
 } from "./constants/Routes";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import { getToken } from "utils/Auth";
+
+const RequireAuth = ({ children, redirectTo }: any) => {
+  const isAuthenticated = getToken();
+  return isAuthenticated ? children : <Navigate to={redirectTo} />;
+};
 
 function App() {
   return (
     <BrowserRouter basename={ROUTES_BASENAME}>
       <Routes>
-        <Route path={ROUTES_PATH_HOME} element={<Home />} />
+        <Route
+          path={ROUTES_PATH_HOME}
+          element={
+            <RequireAuth redirectTo={ROUTES_PATH_LOGIN}>
+              <Home />
+            </RequireAuth>
+          }
+        />
         <Route path={ROUTES_PATH_LOGIN} element={<Login />} />
         <Route
           path={ROUTES_PATH_ROOT}

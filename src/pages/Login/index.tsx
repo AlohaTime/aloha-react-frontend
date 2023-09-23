@@ -8,6 +8,9 @@ import {
   StretchedTextInput,
 } from "./styled";
 import { useNavigate } from "react-router-dom";
+import { postLogin } from "api/authAPI";
+import { setAuthInfo } from "utils/Auth";
+import { ROUTES_PATH_HOME } from "constants/Routes";
 
 function Login() {
   const navigate = useNavigate();
@@ -25,7 +28,17 @@ function Login() {
       setPwErr("비밀번호를 입력해주세요.");
       return;
     } else setPwErr("");
-    navigate("/home");
+    postLogin({ id, password: pw })
+      .then((res) => {
+        const token = res.data;
+        if (!token)
+          throw new Error("아이디 또는 비밀번호가 일치하지 않습니다.");
+        setAuthInfo(token);
+        navigate(ROUTES_PATH_HOME);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
   };
 
   return (

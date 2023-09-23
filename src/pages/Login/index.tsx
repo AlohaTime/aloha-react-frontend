@@ -20,19 +20,17 @@ function Login() {
     if (id === "") {
       setIdErr("아이디를 입력해주세요.");
       return;
-    }
-    else setIdErr("");
+    } else setIdErr("");
     if (pw === "") {
       setPwErr("비밀번호를 입력해주세요.");
       return;
-    }
-    else setPwErr("");
+    } else setPwErr("");
     navigate("/home");
-  }
+  };
 
   return (
     <Container>
-      <Logo src="/logo.png" />
+      <Logo src={`${process.env.PUBLIC_URL}/logo.png`} />
       <StretchedTextInput
         value={id}
         onChange={(e) => setId(e.target.value)}
@@ -49,7 +47,8 @@ function Login() {
       <LoginButton onClick={login}>로그인</LoginButton>
       <Link>아이디/비밀번호 찾기</Link>
       <Message>
-        Aloha Time은 인하대학교 학생만 사용이 가능합니다.<br />
+        Aloha Time은 인하대학교 학생만 사용이 가능합니다.
+        <br />
         I-Class 계정으로 로그인이 가능합니다.
       </Message>
     </Container>

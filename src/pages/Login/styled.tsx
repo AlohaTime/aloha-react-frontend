@@ -12,6 +12,7 @@ export const Container = styled.div`
   justify-content: center;
   gap: 12px;
   align-self: stretch;
+  max-width: 576px;
 `;
 
 export const Logo = styled.img`
@@ -36,4 +37,4 @@ export const Message = styled.span`
   font-size: 10px;
   color: #999;
   text-align: center;
-`
+`;

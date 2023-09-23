@@ -10,7 +10,8 @@ export const HomeContainer = styled.div`
   height: 100vh;
   padding: 0px 30px;
   gap: 10px;
-  background: #FAFAFA;
+  background: #fafafa;
+  max-width: 576px;
 `;
 
 export const StretchedList = styled(List)`

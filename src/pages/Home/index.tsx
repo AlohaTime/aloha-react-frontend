@@ -4,6 +4,7 @@ import { Item, ItemProps } from "../../components/Event";
 import { HomeContainer, StretchedList } from "./styled";
 import { getAssignments, getAttendances } from "api/authAPI";
 import { Assignment, Attendance } from "interfaces/API";
+import { sortItems } from "utils/Sort";
 
 function Home() {
   const [events, setEvents] = useState<ItemProps[]>([]);
@@ -41,7 +42,7 @@ function Home() {
     <HomeContainer>
       <Calendar></Calendar>
       <StretchedList>
-        {events.map((event, idx) => (
+        {sortItems(events).map((event, idx) => (
           <Item
             key={idx}
             type={event.type}

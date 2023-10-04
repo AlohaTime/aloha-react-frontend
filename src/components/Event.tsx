@@ -56,6 +56,13 @@ const SubTitle = styled.span`
   font-size: 10px;
 `;
 
+const SubInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+`;
+
 const Type = styled.span<{ $completed: boolean }>`
   display: flex;
   align-items: center;
@@ -69,9 +76,10 @@ export interface ItemProps {
   title: string;
   subTitle: string;
   completed: boolean;
+  date: string;
 }
 
-export function Item({ type, title, subTitle, completed }: ItemProps) {
+export function Item({ type, title, subTitle, completed, date }: ItemProps) {
   return (
     <Container>
       <Tag type={completed ? "완료" : type} />
@@ -79,7 +87,10 @@ export function Item({ type, title, subTitle, completed }: ItemProps) {
         <Title $completed={completed}>{title}</Title>
         <SubTitle>{subTitle}</SubTitle>
       </Info>
-      <Type $completed={completed}>{type}</Type>
+      <SubInfo>
+        <Type $completed={completed}>{type}</Type>
+        <SubTitle>{date}</SubTitle>
+      </SubInfo>
     </Container>
   );
 }

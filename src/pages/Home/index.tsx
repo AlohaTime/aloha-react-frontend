@@ -1,125 +1,42 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Calendar } from "../../components/Calendar";
 import { Item, ItemProps } from "../../components/Event";
 import { HomeContainer, StretchedList } from "./styled";
+import { getAssignments, getAttendances } from "api/authAPI";
+import { Assignment, Attendance } from "interfaces/API";
 
 function Home() {
-  const [events, setEvents] = useState<ItemProps[]>([
-    {
-      title: "일반 수학1",
-      subTitle: "2023.06.30 23:55",
-      type: "출석",
-      completed: false,
-    },
-    {
-      title: "프로네시스세미나",
-      subTitle: "2023.06.30 23:55",
-      type: "퀴즈",
-      completed: false,
-    },
-    {
-      title: "프로네시스세미나",
-      subTitle: "2023.06.30 23:55",
-      type: "과제",
-      completed: false,
-    },
-    {
-      title: "컴퓨터공학기초",
-      subTitle: "2023.06.30 23:55",
-      type: "출석",
-      completed: true,
-    },
-    {
-      title: "컴퓨터공학기초",
-      subTitle: "2023.06.30 23:55",
-      type: "과제",
-      completed: true,
-    },
-    {
-      title: "컴퓨터공학기초",
-      subTitle: "2023.06.30 23:55",
-      type: "과제",
-      completed: true,
-    },
-    {
-      title: "컴퓨터공학기초",
-      subTitle: "2023.06.30 23:55",
-      type: "과제",
-      completed: true,
-    },
-    {
-      title: "컴퓨터공학기초",
-      subTitle: "2023.06.30 23:55",
-      type: "과제",
-      completed: true,
-    },
-    {
-      title: "컴퓨터공학기초",
-      subTitle: "2023.06.30 23:55",
-      type: "퀴즈",
-      completed: true,
-    },
-    {
-      title: "컴퓨터공학기초",
-      subTitle: "2023.06.30 23:55",
-      type: "퀴즈",
-      completed: true,
-    },
-    {
-      title: "컴퓨터공학기초",
-      subTitle: "2023.06.30 23:55",
-      type: "퀴즈",
-      completed: true,
-    },
-    {
-      title: "컴퓨터공학기초",
-      subTitle: "2023.06.30 23:55",
-      type: "퀴즈",
-      completed: true,
-    },
-    {
-      title: "컴퓨터공학기초",
-      subTitle: "2023.06.30 23:55",
-      type: "퀴즈",
-      completed: true,
-    },
-    {
-      title: "컴퓨터공학기초",
-      subTitle: "2023.06.30 23:55",
-      type: "퀴즈",
-      completed: true,
-    },
-    {
-      title: "컴퓨터공학기초",
-      subTitle: "2023.06.30 23:55",
-      type: "퀴즈",
-      completed: true,
-    },
-    {
-      title: "컴퓨터공학기초",
-      subTitle: "2023.06.30 23:55",
-      type: "퀴즈",
-      completed: true,
-    },
-    {
-      title: "컴퓨터공학기초",
-      subTitle: "2023.06.30 23:55",
-      type: "퀴즈",
-      completed: true,
-    },
-    {
-      title: "컴퓨터공학기초",
-      subTitle: "2023.06.30 23:55",
-      type: "퀴즈",
-      completed: true,
-    },
-    {
-      title: "컴퓨터공학기초",
-      subTitle: "2023.06.30 23:55",
-      type: "퀴즈",
-      completed: true,
-    },
-  ]);
+  const [events, setEvents] = useState<ItemProps[]>([]);
+
+  useEffect(() => {
+    getAttendances().then((res) => {
+      if (!res?.data) return;
+      const attendances = res.data.map((attendance: Attendance) => {
+        return {
+          title: attendance.subjectName,
+          subTitle: attendance.lectureName,
+          type: "출석",
+          completed: attendance.isAttended,
+          date: attendance.attendedDateFrom,
+        };
+      });
+      setEvents(prev => [...prev, ...attendances]);
+    });
+    getAssignments().then((res) => {
+      if (!res?.data) return;
+      const assignments = res.data.map((assignment: Assignment) => {
+        return {
+          title: assignment.subjectName,
+          subTitle: assignment.assignName,
+          type: "과제",
+          completed: assignment.submitDate !== "",
+          date: assignment.dueDate,
+        };
+      });
+      setEvents(prev => [...prev, ...assignments]);
+    });
+  }, []);
+
   return (
     <HomeContainer>
       <Calendar></Calendar>
@@ -131,6 +48,7 @@ function Home() {
             title={event.title}
             subTitle={event.subTitle}
             completed={event.completed}
+            date={event.date}
           />
         ))}
       </StretchedList>

@@ -17,11 +17,11 @@ function Home() {
           title: attendance.subjectName,
           subTitle: attendance.lectureName,
           type: "출석",
-          completed: attendance.isAttended,
+          completed: attendance.isAttended ?? true,
           date: attendance.attendedDateFrom,
         };
       });
-      setEvents(prev => [...prev, ...attendances]);
+      setEvents((prev) => [...prev, ...attendances]);
     });
     getAssignments().then((res) => {
       if (!res?.data) return;
@@ -34,7 +34,7 @@ function Home() {
           date: assignment.dueDate,
         };
       });
-      setEvents(prev => [...prev, ...assignments]);
+      setEvents((prev) => [...prev, ...assignments]);
     });
   }, []);
 

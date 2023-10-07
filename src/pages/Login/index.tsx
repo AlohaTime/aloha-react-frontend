@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+  AppName,
   Container,
   Link,
   LoginButton,
@@ -52,6 +53,7 @@ function Login() {
     <>
       <Container>
         <Logo src={`${process.env.PUBLIC_URL}/logo.png`} />
+        <AppName>Aloha Time</AppName>
         <StretchedTextInput
           value={id}
           onChange={(e) => setId(e.target.value)}

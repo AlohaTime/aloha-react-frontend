@@ -20,6 +20,17 @@ export const Logo = styled.img`
   width: 200px;
 `;
 
+export const AppName = styled.h1`
+  color: #5886c7;
+  text-align: center;
+  font-family: Tmoney RoundWind;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 800;
+  padding: 0;
+  margin: 0;
+`;
+
 export const StretchedTextInput = styled(TextInput)`
   width: 100%;
 `;

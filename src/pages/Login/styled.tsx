@@ -31,6 +31,13 @@ export const AppName = styled.h1`
   margin: 0;
 `;
 
+export const LoginForm = styled.form`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
+
 export const StretchedTextInput = styled(TextInput)`
   width: 100%;
 `;

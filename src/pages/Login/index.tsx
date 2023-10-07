@@ -4,6 +4,7 @@ import {
   Container,
   Link,
   LoginButton,
+  LoginForm,
   Logo,
   Message,
   StretchedTextInput,
@@ -22,7 +23,8 @@ function Login() {
   const [pw, setPw] = useState("");
   const [pwErr, setPwErr] = useState("");
 
-  const login = () => {
+  const login = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (loading) return;
     if (id === "") {
       setIdErr("아이디를 입력해주세요.");
@@ -54,26 +56,28 @@ function Login() {
       <Container>
         <Logo src={`${process.env.PUBLIC_URL}/logo.png`} />
         <AppName>Aloha Time</AppName>
-        <StretchedTextInput
-          value={id}
-          onChange={(e) => setId(e.target.value)}
-          errorMessage={idErr}
-          placeholder="아이디"
-        ></StretchedTextInput>
-        <StretchedTextInput
-          value={pw}
-          onChange={(e) => setPw(e.target.value)}
-          errorMessage={pwErr}
-          placeholder="비밀번호"
-          type="password"
-        ></StretchedTextInput>
-        <LoginButton onClick={login} disabled={loading}>
-          {loading ? (
-            <ThreeDots height="12" width="30" color="#5886c7" />
-          ) : (
-            "로그인"
-          )}
-        </LoginButton>
+        <LoginForm onSubmit={login}>
+          <StretchedTextInput
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+            errorMessage={idErr}
+            placeholder="아이디"
+          ></StretchedTextInput>
+          <StretchedTextInput
+            value={pw}
+            onChange={(e) => setPw(e.target.value)}
+            errorMessage={pwErr}
+            placeholder="비밀번호"
+            type="password"
+          ></StretchedTextInput>
+          <LoginButton disabled={loading}>
+            {loading ? (
+              <ThreeDots height="12" width="30" color="#5886c7" />
+            ) : (
+              "로그인"
+            )}
+          </LoginButton>
+        </LoginForm>
         <Link>아이디/비밀번호 찾기</Link>
         <Message>
           Aloha Time은 인하대학교 학생만 사용이 가능합니다.

@@ -17,14 +17,14 @@ export const Container = styled.div`
 `;
 
 export const Logo = styled.img`
-  width: 200px;
+  width: 120px;
 `;
 
 export const AppName = styled.h1`
   color: #5886c7;
   text-align: center;
   font-family: Tmoney RoundWind;
-  font-size: 40px;
+  font-size: 35px;
   font-style: normal;
   font-weight: 800;
   padding: 0;

@@ -1,13 +1,22 @@
 import { useEffect, useState } from "react";
 import { Calendar } from "../../components/Calendar";
 import { Item, ItemProps } from "../../components/Event";
-import { HomeContainer, StretchedList } from "./styled";
+import {
+  EllipsisSelect,
+  Header,
+  HomeContainer,
+  InfoContainer,
+  StretchedList,
+} from "./styled";
 import { getAssignments, getAttendances } from "api/authAPI";
 import { Assignment, Attendance } from "interfaces/API";
-import { sortItems } from "utils/Sort";
+import { filterItems, sortItems } from "utils/DataManipulation";
+import { Select } from "components/Input";
 
 function Home() {
   const [events, setEvents] = useState<ItemProps[]>([]);
+  const [type, setType] = useState<string>("all");
+  const [subject, setSubject] = useState<string>("all");
 
   useEffect(() => {
     getAttendances().then((res) => {
@@ -41,18 +50,43 @@ function Home() {
   return (
     <HomeContainer>
       <Calendar></Calendar>
-      <StretchedList>
-        {sortItems(events).map((event, idx) => (
-          <Item
-            key={idx}
-            type={event.type}
-            title={event.title}
-            subTitle={event.subTitle}
-            completed={event.completed}
-            date={event.date}
-          />
-        ))}
-      </StretchedList>
+      <InfoContainer>
+        <Header>
+          <Select value={type} onChange={(e) => setType(e.target.value)}>
+            <option value="all">유형 전체</option>
+            <option value="출석">출석</option>
+            <option value="과제">과제</option>
+            <option value="퀴즈">퀴즈</option>
+          </Select>
+          <EllipsisSelect
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)}
+          >
+            <option value="all">과목 전체</option>
+            {[...new Set(events.map((event) => event.title))].map(
+              (title, idx) => {
+                return (
+                  <option key={idx} value={title}>
+                    {title.split("[")[0]}
+                  </option>
+                );
+              }
+            )}
+          </EllipsisSelect>
+        </Header>
+        <StretchedList>
+          {filterItems(sortItems(events), type, subject).map((event, idx) => (
+            <Item
+              key={idx}
+              type={event.type}
+              title={event.title}
+              subTitle={event.subTitle}
+              completed={event.completed}
+              date={event.date}
+            />
+          ))}
+        </StretchedList>
+      </InfoContainer>
     </HomeContainer>
   );
 }

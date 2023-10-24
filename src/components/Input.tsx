@@ -83,18 +83,19 @@ export const PillButton = styled.button`
   border: none;
   border-radius: 12px;
   padding: 4px 10px;
-  background: #f9f9f9;
+  background: white;
   color: #5886c7;
+  border: 1px solid #eee;
 `;
 
 export const Select = styled.select`
   text-align: center;
-  border: 1px solid;
   border-radius: 5px;
   padding: 4px 10px;
   font-size: 12px;
   outline: none;
-  border-color: #ddd;
+  color: #5886c7;
+  border: 1px solid #eee;
   -o-appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;

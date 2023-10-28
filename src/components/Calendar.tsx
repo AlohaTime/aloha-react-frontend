@@ -156,10 +156,16 @@ const DayCalendar = ({
   );
 };
 
-export const Calendar = () => {
+export const Calendar = ({
+  selectedDate,
+  setSelectedDate,
+}: {
+  selectedDate: Date;
+  setSelectedDate: React.Dispatch<React.SetStateAction<Date>>;
+}) => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const [viewDate, setViewDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  // const [selectedDate, setSelectedDate] = useState(new Date());
 
   const prevViewDate = () => {
     setViewDate((prev) => {

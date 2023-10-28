@@ -76,10 +76,11 @@ export interface ItemProps {
   title: string;
   subTitle: string;
   completed: boolean;
-  date: string;
+  startDate: string;
+  endDate: string;
 }
 
-export function Item({ type, title, subTitle, completed, date }: ItemProps) {
+export function Item({ type, title, subTitle, completed, endDate }: ItemProps) {
   return (
     <Container>
       <Tag type={completed ? "완료" : type} />
@@ -89,7 +90,7 @@ export function Item({ type, title, subTitle, completed, date }: ItemProps) {
       </Info>
       <SubInfo>
         <Type $completed={completed}>{type}</Type>
-        <SubTitle>{date}</SubTitle>
+        <SubTitle>{endDate}</SubTitle>
       </SubInfo>
     </Container>
   );

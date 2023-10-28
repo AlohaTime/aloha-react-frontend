@@ -13,3 +13,19 @@ export const getCalendarDate = (date: Date) => {
   }
   return dateArray;
 };
+
+export const compareDate = (date1: Date, date2: Date) => {
+  const time1 = date1.getTime();
+  const time2 = date2.getTime();
+  if (time1 === time2) return 0;
+  else if (time1 > time2) return 1;
+  else return -1;
+};
+
+export const dateToString = (date: Date) => {
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+
+  return `${year}/${month}/${day} 00:00`;
+};

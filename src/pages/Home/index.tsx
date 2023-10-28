@@ -12,9 +12,11 @@ import { getAssignments, getAttendances } from "api/authAPI";
 import { Assignment, Attendance } from "interfaces/API";
 import { filterItems, sortItems } from "utils/DataManipulation";
 import { Select } from "components/Input";
+import { dateToString } from "utils/Date";
 
 function Home() {
   const [events, setEvents] = useState<ItemProps[]>([]);
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [type, setType] = useState<string>("all");
   const [subject, setSubject] = useState<string>("all");
 
@@ -27,7 +29,8 @@ function Home() {
           subTitle: attendance.lectureName,
           type: "출석",
           completed: attendance.isAttended ?? true,
-          date: attendance.attendedDateFrom,
+          startDate: attendance.attendedDateTo,
+          endDate: attendance.attendedDateFrom,
         };
       });
       setEvents((prev) => [...prev, ...attendances]);
@@ -40,7 +43,8 @@ function Home() {
           subTitle: assignment.assignName,
           type: "과제",
           completed: assignment.submitDate !== "",
-          date: assignment.dueDate,
+          startDate: dateToString(new Date(0)),
+          endDate: assignment.dueDate,
         };
       });
       setEvents((prev) => [...prev, ...assignments]);
@@ -49,7 +53,10 @@ function Home() {
 
   return (
     <HomeContainer>
-      <Calendar></Calendar>
+      <Calendar
+        selectedDate={selectedDate}
+        setSelectedDate={setSelectedDate}
+      ></Calendar>
       <InfoContainer>
         <Header>
           <Select value={type} onChange={(e) => setType(e.target.value)}>
@@ -75,16 +82,19 @@ function Home() {
           </EllipsisSelect>
         </Header>
         <StretchedList>
-          {filterItems(sortItems(events), type, subject).map((event, idx) => (
-            <Item
-              key={idx}
-              type={event.type}
-              title={event.title}
-              subTitle={event.subTitle}
-              completed={event.completed}
-              date={event.date}
-            />
-          ))}
+          {filterItems(sortItems(events), selectedDate, type, subject).map(
+            (event, idx) => (
+              <Item
+                key={idx}
+                type={event.type}
+                title={event.title}
+                subTitle={event.subTitle}
+                completed={event.completed}
+                startDate={event.startDate}
+                endDate={event.endDate}
+              />
+            )
+          )}
         </StretchedList>
       </InfoContainer>
     </HomeContainer>

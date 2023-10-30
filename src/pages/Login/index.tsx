@@ -14,6 +14,7 @@ import { postLogin } from "api/authAPI";
 import { setAuthInfo } from "utils/Auth";
 import { ROUTES_PATH_HOME } from "constants/Routes";
 import { ThreeDots } from "react-loader-spinner";
+import { PostLoginResponse } from "interfaces/API";
 
 function Login() {
   const navigate = useNavigate();
@@ -36,8 +37,8 @@ function Login() {
     } else setPwErr("");
     setLoading(true);
     postLogin({ id, password: pw })
-      .then((res) => {
-        const token = res.data;
+      .then((res: PostLoginResponse) => {
+        const token = res.data.data;
         if (!token)
           throw new Error("아이디 또는 비밀번호가 일치하지 않습니다.");
         setAuthInfo(token);

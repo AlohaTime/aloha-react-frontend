@@ -9,7 +9,7 @@ import {
   StretchedList,
 } from "./styled";
 import { getAssignments, getAttendances } from "api/authAPI";
-import { Assignment, Attendance } from "interfaces/API";
+import { GetAssignmentsResponse, GetAttendancesResponse } from "interfaces/API";
 import { filterItems, sortItems } from "utils/DataManipulation";
 import { Select } from "components/Input";
 import { dateToString } from "utils/Date";
@@ -21,9 +21,9 @@ function Home() {
   const [subject, setSubject] = useState<string>("all");
 
   useEffect(() => {
-    getAttendances().then((res) => {
-      if (!res?.data) return;
-      const attendances = res.data.map((attendance: Attendance) => {
+    getAttendances().then((res: GetAttendancesResponse) => {
+      if (!res?.data?.data) return;
+      const attendances = res.data.data.map((attendance) => {
         return {
           title: attendance.subjectName,
           subTitle: attendance.lectureName,
@@ -35,9 +35,9 @@ function Home() {
       });
       setEvents((prev) => [...prev, ...attendances]);
     });
-    getAssignments().then((res) => {
-      if (!res?.data) return;
-      const assignments = res.data.map((assignment: Assignment) => {
+    getAssignments().then((res: GetAssignmentsResponse) => {
+      if (!res?.data?.data) return;
+      const assignments = res.data.data.map((assignment) => {
         return {
           title: assignment.subjectName,
           subTitle: assignment.assignName,

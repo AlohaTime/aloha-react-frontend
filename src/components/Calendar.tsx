@@ -2,6 +2,8 @@ import { styled } from "styled-components";
 import { useEffect, useRef, useState } from "react";
 import { PillButton } from "./Input";
 import { getCalendarDate, toMonthYear } from "utils/Date";
+import { ROUTES_PATH_SETTING } from "constants/Routes";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -163,6 +165,7 @@ export const Calendar = ({
   selectedDate: Date;
   setSelectedDate: React.Dispatch<React.SetStateAction<Date>>;
 }) => {
+  const navigate = useNavigate();
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const [viewDate, setViewDate] = useState(new Date());
   // const [selectedDate, setSelectedDate] = useState(new Date());
@@ -208,6 +211,10 @@ export const Calendar = ({
     }
   };
 
+  const navigateToSetting = () => {
+    navigate(ROUTES_PATH_SETTING);
+  };
+
   useEffect(() => {
     if (scrollRef.current) {
       const container = scrollRef.current;
@@ -225,6 +232,9 @@ export const Calendar = ({
           <PillButton onClick={prevViewDate}>&lt;</PillButton>
           <PillButton onClick={nextViewDate}>&gt;</PillButton>
           <PillButton onClick={todayViewDate}>오늘</PillButton>
+          <PillButton onClick={navigateToSetting} style={{ height: 27 }}>
+            <img src="images/gear.svg" />
+          </PillButton>
         </ButtonContainer>
       </Header>
       <ScrollContainer ref={scrollRef} onScroll={handleScroll}>

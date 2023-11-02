@@ -4,12 +4,14 @@ import {
   ROUTES_PATH_HOME,
   ROUTES_PATH_LOGIN,
   ROUTES_PATH_ROOT,
+  ROUTES_PATH_SETTING,
 } from "./constants/Routes";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import { getToken } from "utils/Auth";
 import { Toaster } from "react-hot-toast";
 import { ApiClientSetting } from "api/apiClient";
+import Setting from "pages/Setting";
 
 const RequireAuth = ({ children, redirectTo }: any) => {
   const isAuthenticated = getToken();
@@ -28,6 +30,14 @@ function App() {
             element={
               <RequireAuth redirectTo={ROUTES_PATH_LOGIN}>
                 <Home />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path={ROUTES_PATH_SETTING}
+            element={
+              <RequireAuth redirectTo={ROUTES_PATH_LOGIN}>
+                <Setting />
               </RequireAuth>
             }
           />

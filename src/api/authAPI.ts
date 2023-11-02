@@ -3,7 +3,7 @@ import {
   API_GET_ATTENDANCES,
   API_POST_LOGIN,
 } from "constants/Api";
-import apiClient from "./apiClient";
+import { apiClient } from "./apiClient";
 import { getToken } from "utils/Auth";
 
 export const postLogin = ({

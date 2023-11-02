@@ -1,4 +1,4 @@
-import apiClient from "api/apiClient";
+import { apiClient } from "api/apiClient";
 
 export const getToken = () =>
   window.localStorage.getItem(process.env.REACT_APP_AUTH_TOKEN_STORAGE_KEY!!);

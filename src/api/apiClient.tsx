@@ -18,7 +18,7 @@ export function ApiClientSetting() {
   apiClient.interceptors.response.use(
     (response) => {
       if (response.data.code !== 200) {
-        customErrorToast("로그인 세션이 만료되었습니다.\n다시 로그인해주세요.");
+        customErrorToast(response.data.message);
         removeAuthInfo();
         navigate(ROUTES_PATH_LOGIN);
         return new Promise(() => {});

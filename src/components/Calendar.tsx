@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 const Container = styled.div`
   display: flex;
   width: 100%;
+  max-height: 70%;
   padding: 12px 30px;
   flex-direction: column;
   align-items: center;
@@ -38,7 +39,8 @@ const ButtonContainer = styled.div`
 
 const ScrollContainer = styled.div`
   display: flex;
-  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 1/1;
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   gap: 30px;
@@ -244,9 +246,9 @@ export const Calendar = ({
             viewDate={
               new Date(new Date(viewDate).setMonth(viewDate.getMonth() - 1))
             }
-            setViewDate={() => {}}
+            setViewDate={() => { }}
             selectedDate={selectedDate}
-            setSelectedDate={() => {}}
+            setSelectedDate={() => { }}
           />
         </Month>
         <Month>
@@ -264,9 +266,9 @@ export const Calendar = ({
             viewDate={
               new Date(new Date(viewDate).setMonth(viewDate.getMonth() + 1))
             }
-            setViewDate={() => {}}
+            setViewDate={() => { }}
             selectedDate={selectedDate}
-            setSelectedDate={() => {}}
+            setSelectedDate={() => { }}
           />
         </Month>
       </ScrollContainer>

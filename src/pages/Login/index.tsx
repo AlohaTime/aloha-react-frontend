@@ -76,7 +76,9 @@ function Login() {
             )}
           </LoginButton>
         </LoginForm>
-        <Link>아이디/비밀번호 찾기</Link>
+        <Link href="https://itislink.inha.ac.kr/passWord/help/">
+          아이디/비밀번호 찾기
+        </Link>
         <Message>
           Aloha Time은 인하대학교 학생만 사용이 가능합니다.
           <br />

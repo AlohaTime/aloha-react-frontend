@@ -1,5 +1,24 @@
-import { ItemProps } from "components/Event";
+import { ItemProps } from "interfaces/Item";
 import { compareDate } from "./Date";
+import { GetItemResponse } from "interfaces/API";
+
+export const responseToItem = (
+  res: GetItemResponse,
+  type: string
+): ItemProps[] => {
+  if (!res?.data?.data) return [];
+  const item = res.data.data.map((item) => {
+    return {
+      title: item.subjectName,
+      subTitle: item.itemName,
+      type: type,
+      completed: item.isDone,
+      startDate: item.startDate,
+      endDate: item.endDate,
+    };
+  });
+  return item;
+};
 
 export const sortItems = (items: ItemProps[]) => {
   return items.sort((a, b) => {
@@ -29,4 +48,10 @@ export const filterItems = (
     const subjectMatch = item.title === subject || subject === "all";
     return isPresent && typeMatch && subjectMatch;
   });
+};
+
+export const getSubjectList = (items: ItemProps[]) => {
+  const subjectList = items.map((item) => item.title);
+  const uniqueSubjectList = Array.from(new Set(subjectList));
+  return uniqueSubjectList;
 };

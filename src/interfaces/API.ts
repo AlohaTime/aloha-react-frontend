@@ -6,23 +6,14 @@ interface APIResponse<D> {
   data: D;
 }
 
-export interface Attendance {
+export interface ItemResponse {
   subjectName: string;
-  lectureName: string;
-  attendedDateTo: string;
-  attendedDateFrom: string;
-  isAttended?: boolean;
-  errorMsg?: string;
-}
-
-export interface Assignment {
-  subjectName: string;
-  assignName: string;
-  submitDate: string;
-  dueDate?: any;
-  errorMsg?: any;
+  itemName: string;
+  isDone: boolean;
+  itemLink: string;
+  startDate: string;
+  endDate: string;
 }
 
 export type PostLoginResponse = AxiosResponse<APIResponse<string>>;
-export type GetAttendancesResponse = AxiosResponse<APIResponse<Attendance[]>>;
-export type GetAssignmentsResponse = AxiosResponse<APIResponse<Assignment[]>>;
+export type GetItemResponse = AxiosResponse<APIResponse<ItemResponse[]>>;

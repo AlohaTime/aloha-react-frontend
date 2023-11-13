@@ -4,6 +4,7 @@ import { PillButton } from "./Input";
 import { getCalendarDate, toMonthYear } from "utils/Date";
 import { ROUTES_PATH_SETTING } from "constants/Routes";
 import { useNavigate } from "react-router-dom";
+import { useInput } from "hooks/Input";
 
 const Container = styled.div`
   display: flex;
@@ -160,17 +161,10 @@ const DayCalendar = ({
   );
 };
 
-export const Calendar = ({
-  selectedDate,
-  setSelectedDate,
-}: {
-  selectedDate: Date;
-  setSelectedDate: React.Dispatch<React.SetStateAction<Date>>;
-}) => {
+export const Calendar = () => {
   const navigate = useNavigate();
   const scrollRef = useRef<HTMLDivElement | null>(null);
-  const [viewDate, setViewDate] = useState(new Date());
-  // const [selectedDate, setSelectedDate] = useState(new Date());
+  const { selectedDate, setSelectedDate, viewDate, setViewDate } = useInput();
 
   const prevViewDate = () => {
     setViewDate((prev) => {
@@ -246,9 +240,9 @@ export const Calendar = ({
             viewDate={
               new Date(new Date(viewDate).setMonth(viewDate.getMonth() - 1))
             }
-            setViewDate={() => { }}
+            setViewDate={() => {}}
             selectedDate={selectedDate}
-            setSelectedDate={() => { }}
+            setSelectedDate={() => {}}
           />
         </Month>
         <Month>
@@ -266,9 +260,9 @@ export const Calendar = ({
             viewDate={
               new Date(new Date(viewDate).setMonth(viewDate.getMonth() + 1))
             }
-            setViewDate={() => { }}
+            setViewDate={() => {}}
             selectedDate={selectedDate}
-            setSelectedDate={() => { }}
+            setSelectedDate={() => {}}
           />
         </Month>
       </ScrollContainer>

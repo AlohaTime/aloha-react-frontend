@@ -1,3 +1,4 @@
+import { ItemProps } from "interfaces/Item";
 import { styled } from "styled-components";
 
 export const List = styled.div`
@@ -70,15 +71,6 @@ const Type = styled.span<{ $completed: boolean }>`
   color: ${(props) => (props.$completed ? "#999" : "#555")};
   font-size: 10px;
 `;
-
-export interface ItemProps {
-  type: string;
-  title: string;
-  subTitle: string;
-  completed: boolean;
-  startDate: string;
-  endDate: string;
-}
 
 export function Item({ type, title, subTitle, completed, endDate }: ItemProps) {
   return (

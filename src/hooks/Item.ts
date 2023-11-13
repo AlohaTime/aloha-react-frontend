@@ -2,7 +2,12 @@ import { getAssignments, getAttendances, getQuizzes } from "api/authAPI";
 import { ItemFilterProps } from "interfaces/Item";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { selectedDateAtom, selectedFiltersAtom } from "recoil/Input";
-import { assignmentsAtom, attendancesAtom, itemLoadingAtom } from "recoil/Item";
+import {
+  assignmentsAtom,
+  attendancesAtom,
+  itemLoadingAtom,
+  quizzesAtom,
+} from "recoil/Item";
 import {
   filterItems,
   getSubjectList,
@@ -14,7 +19,7 @@ export const useItem = () => {
   const [itemLoading, setItemLoading] = useRecoilState(itemLoadingAtom);
   const [attendances, setAttendances] = useRecoilState(attendancesAtom);
   const [assignments, setAssignments] = useRecoilState(assignmentsAtom);
-  const [quizzes, setQuizzes] = useRecoilState(assignmentsAtom);
+  const [quizzes, setQuizzes] = useRecoilState(quizzesAtom);
   const selectedDate = useRecoilValue(selectedDateAtom);
   const selectedFilters = useRecoilValue(selectedFiltersAtom);
 

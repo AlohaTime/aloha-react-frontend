@@ -15,6 +15,7 @@ export const responseToItem = (
       completed: item.isDone,
       startDate: item.startDate,
       endDate: item.endDate,
+      link: item.itemLink,
     };
   });
   return item;

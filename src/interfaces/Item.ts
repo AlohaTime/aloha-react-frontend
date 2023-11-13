@@ -11,6 +11,7 @@ export interface ItemProps {
   completed: boolean;
   startDate: string;
   endDate: string;
+  link: string;
 }
 
 export type ItemTypes = "출석" | "과제" | "퀴즈" | "all";

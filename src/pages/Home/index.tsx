@@ -75,6 +75,7 @@ function Home() {
               completed={event.completed}
               startDate={event.startDate}
               endDate={event.endDate}
+              link={event.link}
             />
           ))}
         </StretchedList>

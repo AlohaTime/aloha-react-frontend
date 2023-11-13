@@ -72,9 +72,9 @@ const Type = styled.span<{ $completed: boolean }>`
   font-size: 10px;
 `;
 
-export function Item({ type, title, subTitle, completed, endDate }: ItemProps) {
+export function Item({ type, title, subTitle, completed, endDate, link }: ItemProps) {
   return (
-    <Container>
+    <Container onClick={() => window.open(link)}>
       <Tag type={completed ? "완료" : type} />
       <Info>
         <Title $completed={completed}>{title}</Title>

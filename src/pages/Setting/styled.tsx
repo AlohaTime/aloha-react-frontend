@@ -23,7 +23,7 @@ export const Logo = styled.img`
 export const AppName = styled.h1`
   color: #5886c7;
   text-align: center;
-  font-family: Tmoney RoundWind;
+  font-family: "tmoney bold";
   font-size: 35px;
   font-style: normal;
   font-weight: 800;
@@ -32,7 +32,7 @@ export const AppName = styled.h1`
 `;
 
 export const Header = styled.h2`
-  font-family: Tmoney RoundWind;
+  font-family: "tmoney bold";
   font-size: 12px;
   color: #999;
   text-align: center;
@@ -40,7 +40,7 @@ export const Header = styled.h2`
 `;
 
 export const Body = styled.span`
-  font-family: Tmoney RoundWind;
+  font-family: "tmoney bold";
   font-size: 10px;
   color: #999;
   text-align: center;

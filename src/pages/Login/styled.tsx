@@ -23,7 +23,7 @@ export const Logo = styled.img`
 export const AppName = styled.h1`
   color: #5886c7;
   text-align: center;
-  font-family: Tmoney RoundWind;
+  font-family: "tmoney bold";
   font-size: 35px;
   font-style: normal;
   font-weight: 800;

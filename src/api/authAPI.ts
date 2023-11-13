@@ -1,6 +1,7 @@
 import {
   API_GET_ASSIGNMENTS,
   API_GET_ATTENDANCES,
+  API_GET_QUIZZES,
   API_POST_LOGIN,
 } from "constants/Api";
 import { apiClient } from "./apiClient";
@@ -22,4 +23,8 @@ export const getAttendances = () => {
 
 export const getAssignments = () => {
   return apiClient.get(`${API_GET_ASSIGNMENTS}?token=${getToken()}`);
+};
+
+export const getQuizzes = () => {
+  return apiClient.get(`${API_GET_QUIZZES}?token=${getToken()}`);
 };

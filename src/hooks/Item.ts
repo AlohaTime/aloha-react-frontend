@@ -1,4 +1,4 @@
-import { getAssignments, getAttendances } from "api/authAPI";
+import { getAssignments, getAttendances, getQuizzes } from "api/authAPI";
 import { ItemFilterProps } from "interfaces/Item";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { selectedDateAtom, selectedFiltersAtom } from "recoil/Input";
@@ -14,6 +14,7 @@ export const useItem = () => {
   const [itemLoading, setItemLoading] = useRecoilState(itemLoadingAtom);
   const [attendances, setAttendances] = useRecoilState(attendancesAtom);
   const [assignments, setAssignments] = useRecoilState(assignmentsAtom);
+  const [quizzes, setQuizzes] = useRecoilState(assignmentsAtom);
   const selectedDate = useRecoilValue(selectedDateAtom);
   const selectedFilters = useRecoilValue(selectedFiltersAtom);
 
@@ -25,15 +26,20 @@ export const useItem = () => {
     const res = await getAssignments();
     setAssignments(responseToItem(res, "과제"));
   };
+  const addQuizzes = async () => {
+    const res = await getQuizzes();
+    setQuizzes(responseToItem(res, "퀴즈"));
+  };
 
   const refreshItems = () => {
+    if (itemLoading) return;
     setItemLoading(true);
-    Promise.all([addAttendances(), addAssignments()]).then(() =>
+    Promise.all([addAttendances(), addAssignments(), addQuizzes()]).then(() =>
       setItemLoading(false)
     );
   };
 
-  const allItems = [...attendances, ...assignments];
+  const allItems = [...attendances, ...assignments, ...quizzes];
   const sortedItems = sortItems(allItems);
   const subjectList = getSubjectList(allItems);
   const getFilterdItems = (options?: ItemFilterProps) =>

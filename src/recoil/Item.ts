@@ -11,6 +11,11 @@ export const assignmentsAtom = atom<ItemProps[]>({
   default: [],
 });
 
+export const quizzesAtom = atom<ItemProps[]>({
+  key: "quizzesAtom",
+  default: [],
+});
+
 export const itemLoadingAtom = atom<boolean>({
   key: "itemLoadingAtom",
   default: false,

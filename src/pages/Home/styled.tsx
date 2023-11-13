@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { List } from "../../components/Event";
+import { List } from "../../components/Item";
 import { ButtonStyle, Select } from "components/Input";
 
 export const HomeContainer = styled.div`

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Calendar } from "../../components/Calendar";
-import { Item } from "../../components/Event";
+import { Item } from "../../components/Item";
 import {
   EllipsisSelect,
   Header,

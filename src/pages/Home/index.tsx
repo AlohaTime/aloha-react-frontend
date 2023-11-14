@@ -11,12 +11,9 @@ import {
   RightContainer,
   StretchedList,
 } from "./styled";
-import { filterItems, sortItems } from "utils/DataManipulation";
 import { Select } from "components/Input";
 import { FallingLines } from "react-loader-spinner";
 import { useItem } from "hooks/Item";
-import { useRecoilValue } from "recoil";
-import { selectedFiltersAtom } from "recoil/Input";
 import { useInput } from "hooks/Input";
 import { ItemTypes } from "interfaces/Item";
 
@@ -24,7 +21,7 @@ function Home() {
   const { type, subject, setType, setSubject } = useInput();
   const { itemLoading, getFilterdItems, refreshItems, subjectList } = useItem();
 
-  useEffect(refreshItems, []);
+  useEffect(refreshItems, [refreshItems]);
 
   return (
     <HomeContainer>
@@ -36,7 +33,11 @@ function Home() {
               {itemLoading ? (
                 <FallingLines width="22px" height="22px" color="#5886c7" />
               ) : (
-                <img src="images/refresh.svg" height="10px" />
+                <img
+                  src="images/refresh.svg"
+                  height="10px"
+                  alt="refresh button"
+                />
               )}
             </RefreshButton>
           </LeftContainer>

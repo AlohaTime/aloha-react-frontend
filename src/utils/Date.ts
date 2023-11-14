@@ -14,7 +14,7 @@ export const getCalendarDate = (date: Date) => {
   return dateArray;
 };
 
-export const compareDate = (date1: Date, date2: Date) => {
+export const compareDateTime = (date1: Date, date2: Date) => {
   const time1 = date1.getTime();
   const time2 = date2.getTime();
   if (time1 === time2) return 0;

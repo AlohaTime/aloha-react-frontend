@@ -21,6 +21,7 @@ function Home() {
   const { type, subject, setType, setSubject } = useInput();
   const { itemLoading, getFilterdItems, refreshItems, subjectList } = useItem();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(refreshItems, []);
 
   return (

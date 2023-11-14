@@ -21,7 +21,7 @@ function Home() {
   const { type, subject, setType, setSubject } = useInput();
   const { itemLoading, getFilterdItems, refreshItems, subjectList } = useItem();
 
-  useEffect(refreshItems, [refreshItems]);
+  useEffect(refreshItems, []);
 
   return (
     <HomeContainer>

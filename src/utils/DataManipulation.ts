@@ -1,5 +1,5 @@
 import { ItemProps } from "interfaces/Item";
-import { compareDate } from "./Date";
+import { compareDateTime } from "./Date";
 import { GetItemResponse } from "interfaces/API";
 
 export const responseToItem = (
@@ -26,7 +26,7 @@ export const sortItems = (items: ItemProps[]) => {
     if (a.completed === b.completed) {
       const dateA = new Date(a.endDate);
       const dateB = new Date(b.endDate);
-      return compareDate(dateA, dateB);
+      return compareDateTime(dateA, dateB);
     } else {
       return a.completed ? 1 : -1;
     }
@@ -43,8 +43,8 @@ export const filterItems = (
     const startDate = new Date(item.startDate);
     const endDate = new Date(item.endDate);
     const isPresent =
-      compareDate(startDate, selectedDate) <= 0 &&
-      compareDate(endDate, selectedDate) >= 0;
+      compareDateTime(startDate, selectedDate) <= 0 &&
+      compareDateTime(endDate, selectedDate) >= 0;
     const typeMatch = item.type === type || type === "all";
     const subjectMatch = item.title === subject || subject === "all";
     return isPresent && typeMatch && subjectMatch;

@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import { List } from "../../components/Item";
-import { ButtonStyle, Select } from "components/Input";
+import { Select } from "components/Input";
 
 export const HomeContainer = styled.div`
   display: flex;
@@ -41,7 +41,6 @@ export const RefreshButton = styled.button`
   border-radius: 5px;
   background-color: #00000000;
   border: 1px solid #eee;
-
 `;
 export const LeftContainer = styled.div`
   display: flex;

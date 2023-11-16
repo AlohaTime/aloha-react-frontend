@@ -1,10 +1,11 @@
 import { styled } from "styled-components";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { PillButton } from "./Input";
-import { getCalendarDate, toMonthYear } from "utils/Date";
+import { compareDate, getCalendarDate, toMonthYear } from "utils/Date";
 import { ROUTES_PATH_SETTING } from "constants/Routes";
 import { useNavigate } from "react-router-dom";
 import { useInput } from "hooks/Input";
+import { useItem } from "hooks/Item";
 
 const Container = styled.div`
   display: flex;
@@ -73,6 +74,7 @@ const Day = styled.div<{
   $isToday: boolean;
   $selected: boolean;
 }>`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -102,6 +104,22 @@ const Day = styled.div<{
     return "transparent";
   }};
 `;
+export const DayNotice = styled.div`
+  position: absolute;
+  bottom: 5px;
+  width: 100%;
+  height: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+`;
+export const DayNoticeIcon = styled.div<{ color: string }>`
+  height: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  background-color: ${(props) => props.color};
+`;
 
 interface DayCalendarProps {
   viewDate: Date;
@@ -129,17 +147,22 @@ const DayCalendar = ({
   setSelectedDate,
 }: DayCalendarProps) => {
   const today = new Date();
-  const todayMonth = today.getMonth();
-  const todayDate = today.getDate();
+  const { type, subject } = useInput();
+  const { getFilterdItems } = useItem();
   return (
     <>
       {getCalendarDate(viewDate).map((date, idx) => {
-        const month = date.getMonth();
-        const day = date.getDate();
-        const isCurrentMonth = month === viewDate.getMonth();
-        const isToday = month === todayMonth && day === todayDate;
-        const isSelected =
-          month === selectedDate.getMonth() && day === selectedDate.getDate();
+        const isCurrentMonth = date.getMonth() === viewDate.getMonth();
+        const isToday = !compareDate(date, today);
+        const isSelected = !compareDate(date, selectedDate);
+        let hasAttendance = false;
+        let hasAssignment = false;
+        let hasQuiz = false;
+        getFilterdItems({ date, type, subject }).forEach((item) => {
+          if (!item.completed && item.type === "출석") hasAttendance = true;
+          if (!item.completed && item.type === "과제") hasAssignment = true;
+          if (!item.completed && item.type === "퀴즈") hasQuiz = true;
+        });
         return (
           <Day
             key={idx}
@@ -153,7 +176,14 @@ const DayCalendar = ({
               }
             }}
           >
-            {day}
+            {date.getDate()}
+            <DayNotice>
+              <>
+                {hasAttendance && <DayNoticeIcon color="#FF97AE" />}
+                {hasQuiz && <DayNoticeIcon color="#F8D47A" />}
+                {hasAssignment && <DayNoticeIcon color="#C3F07B" />}
+              </>
+            </DayNotice>
           </Day>
         );
       })}
@@ -229,7 +259,7 @@ export const Calendar = () => {
           <PillButton onClick={nextViewDate}>&gt;</PillButton>
           <PillButton onClick={todayViewDate}>오늘</PillButton>
           <PillButton onClick={navigateToSetting} style={{ height: 27 }}>
-            <img src="images/gear.svg" />
+            <img src="images/gear.svg" alt="setting button" />
           </PillButton>
         </ButtonContainer>
       </Header>

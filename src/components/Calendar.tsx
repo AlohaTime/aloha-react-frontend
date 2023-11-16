@@ -78,6 +78,7 @@ const Day = styled.div<{
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   width: 100%;
   aspect-ratio: 1/1;
   text-align: center;
@@ -105,8 +106,7 @@ const Day = styled.div<{
   }};
 `;
 export const DayNotice = styled.div`
-  position: absolute;
-  bottom: 5px;
+  position: relative;
   width: 100%;
   height: 3px;
   display: flex;
@@ -270,9 +270,9 @@ export const Calendar = () => {
             viewDate={
               new Date(new Date(viewDate).setMonth(viewDate.getMonth() - 1))
             }
-            setViewDate={() => {}}
+            setViewDate={() => { }}
             selectedDate={selectedDate}
-            setSelectedDate={() => {}}
+            setSelectedDate={() => { }}
           />
         </Month>
         <Month>
@@ -290,9 +290,9 @@ export const Calendar = () => {
             viewDate={
               new Date(new Date(viewDate).setMonth(viewDate.getMonth() + 1))
             }
-            setViewDate={() => {}}
+            setViewDate={() => { }}
             selectedDate={selectedDate}
-            setSelectedDate={() => {}}
+            setSelectedDate={() => { }}
           />
         </Month>
       </ScrollContainer>

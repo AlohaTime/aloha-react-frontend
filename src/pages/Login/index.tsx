@@ -44,6 +44,7 @@ function Login() {
         setAuthInfo(token);
         navigate(ROUTES_PATH_HOME);
       })
+      .catch(() => {})
       .finally(() => {
         setLoading(false);
       });

@@ -18,16 +18,16 @@ export function ApiClientSetting() {
   apiClient.interceptors.response.use(
     (response) => {
       if (response.data.code !== 200) {
-        customErrorToast(response.data.message);
         removeAuthInfo();
         navigate(ROUTES_PATH_LOGIN);
-        return new Promise(() => {});
+        customErrorToast(response.data.message);
+        return Promise.reject(new Error(response.data.message));
       }
       return response;
     },
     (error) => {
-      customErrorToast("서버와의 연결이 원활하지 않습니다.");
-      return new Promise(() => {});
+      customErrorToast(error.message);
+      return Promise.reject(error);
     }
   );
 

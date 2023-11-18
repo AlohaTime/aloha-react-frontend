@@ -39,9 +39,10 @@ export const useItem = () => {
   const refreshItems = () => {
     if (itemLoading) return;
     setItemLoading(true);
-    Promise.all([addAttendances(), addAssignments(), addQuizzes()]).then(() =>
-      setItemLoading(false)
-    );
+    Promise.all([addAttendances(), addAssignments(), addQuizzes()])
+      .then(() => {})
+      .catch(() => {})
+      .finally(() => setItemLoading(false));
   };
 
   const allItems = [...attendances, ...assignments, ...quizzes];

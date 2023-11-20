@@ -28,7 +28,7 @@ function Setting() {
         <Header>GitHub</Header>
         <Body>https://github.com/AlohaTime</Body>
         <Header>버전</Header>
-        <Body>1.0.0</Body>
+        <Body>1.13.0</Body>
         <Buttons>
           <BorderedButton onClick={() => navigate(-1)}>돌아가기</BorderedButton>
           <ButtonStyle

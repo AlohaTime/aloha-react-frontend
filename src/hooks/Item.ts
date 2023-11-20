@@ -50,7 +50,7 @@ export const useItem = () => {
   const subjectList = getSubjectList(allItems);
   const getFilterdItems = (options?: ItemFilterProps) =>
     filterItems(
-      sortedItems,
+      sortItems(allItems),
       options?.date || selectedDate,
       options?.type || selectedFilters.type,
       options?.subject || selectedFilters.subject

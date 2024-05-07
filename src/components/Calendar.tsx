@@ -60,6 +60,7 @@ const Month = styled.div`
   width: 100%;
   min-width: 100%;
   scroll-snap-align: start;
+  align-items: center;
 `;
 
 const DayOfTheWeekContainer = styled.div`

@@ -6,13 +6,13 @@ import {
   assignmentsAtom,
   attendancesAtom,
   itemLoadingAtom,
-  quizzesAtom,
+  quizzesAtom
 } from "recoil/Item";
 import {
   filterItems,
   getSubjectList,
   responseToItem,
-  sortItems,
+  sortItems
 } from "utils/DataManipulation";
 
 export const useItem = () => {
@@ -61,6 +61,6 @@ export const useItem = () => {
     sortedItems,
     subjectList,
     getFilterdItems,
-    refreshItems,
+    refreshItems
   };
 };

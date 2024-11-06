@@ -1,5 +1,5 @@
 import { ItemProps } from "interfaces/Item";
-import { compareDateTime } from "./Date";
+import { compareDateTime, compareNumber } from "./Date";
 import { GetItemResponse } from "interfaces/API";
 
 export const responseToItem = (
@@ -15,17 +15,20 @@ export const responseToItem = (
       completed: item.isDone,
       startDate: item.startDate,
       endDate: item.endDate,
-      link: item.itemLink,
+      link: item.itemLink
     };
   });
   return item;
 };
 
 export const sortItems = (items: ItemProps[]) => {
-  return items.sort((a, b) => {
+  const arr = [...items];
+  return arr.sort((a, b) => {
     if (a.completed === b.completed) {
       const dateA = new Date(a.endDate);
       const dateB = new Date(b.endDate);
+      if (isNaN(Number(dateA))) return 1;
+      if (isNaN(Number(dateB))) return -1;
       return compareDateTime(dateA, dateB);
     } else {
       return a.completed ? 1 : -1;

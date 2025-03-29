@@ -57,5 +57,5 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.16.7",
     "@types/styled-components": "^5.1.26"
   },
-  "homepage": "https://AlohaTime.github.io/aloha-react-frontend"
+  "homepage": "https://aloha-react-frontend.vercel.app/"
 }

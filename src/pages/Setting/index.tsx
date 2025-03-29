@@ -6,7 +6,7 @@ import {
   Buttons,
   Container,
   Header,
-  Logo,
+  Logo
 } from "./styled";
 import { ButtonStyle } from "components/Input";
 import { ROUTES_PATH_LOGIN } from "constants/Routes";
@@ -18,7 +18,7 @@ function Setting() {
   return (
     <>
       <Container>
-        <Logo src={`${process.env.PUBLIC_URL}/logo.png`} />
+        <Logo src={`/logo.png`} />
         <AppName>Aloha Time</AppName>
         <Header>개발자</Header>
         <Body>인하대학교 미래융합대학</Body>

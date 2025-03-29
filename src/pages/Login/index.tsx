@@ -7,7 +7,7 @@ import {
   LoginForm,
   Logo,
   Message,
-  StretchedTextInput,
+  StretchedTextInput
 } from "./styled";
 import { useNavigate } from "react-router-dom";
 import { postLogin } from "api/authAPI";
@@ -53,31 +53,31 @@ function Login() {
   return (
     <>
       <Container>
-        <Logo src={`${process.env.PUBLIC_URL}/logo.png`} />
+        <Logo src={`/logo.png`} />
         <AppName>Aloha Time</AppName>
         <LoginForm onSubmit={login}>
           <StretchedTextInput
             value={id}
             onChange={(e) => setId(e.target.value)}
             errorMessage={idErr}
-            placeholder="아이디"
+            placeholder='아이디'
           ></StretchedTextInput>
           <StretchedTextInput
             value={pw}
             onChange={(e) => setPw(e.target.value)}
             errorMessage={pwErr}
-            placeholder="비밀번호"
-            type="password"
+            placeholder='비밀번호'
+            type='password'
           ></StretchedTextInput>
           <LoginButton disabled={loading}>
             {loading ? (
-              <ThreeDots height="12" width="30" color="#5886c7" />
+              <ThreeDots height='12' width='30' color='#5886c7' />
             ) : (
               "로그인"
             )}
           </LoginButton>
         </LoginForm>
-        <Link href="https://itislink.inha.ac.kr/passWord/help/">
+        <Link href='https://itislink.inha.ac.kr/passWord/help/'>
           아이디/비밀번호 찾기
         </Link>
         <Message>

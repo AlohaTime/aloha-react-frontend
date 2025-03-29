@@ -10,6 +10,7 @@
     "@types/node": "^16.18.39",
     "@types/react": "^18.2.18",
     "@types/react-dom": "^18.2.7",
+    "@vercel/analytics": "^1.5.0",
     "axios": "^1.4.0",
     "gh-pages": "^6.0.0",
     "react": "^18.2.0",

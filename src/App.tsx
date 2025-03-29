@@ -4,7 +4,7 @@ import {
   ROUTES_PATH_HOME,
   ROUTES_PATH_LOGIN,
   ROUTES_PATH_ROOT,
-  ROUTES_PATH_SETTING,
+  ROUTES_PATH_SETTING
 } from "./constants/Routes";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -12,6 +12,7 @@ import { getToken } from "utils/Auth";
 import { Toaster } from "react-hot-toast";
 import { ApiClientSetting } from "api/apiClient";
 import Setting from "pages/Setting";
+import { Analytics } from "@vercel/analytics/react";
 
 const RequireAuth = ({ children, redirectTo }: any) => {
   const isAuthenticated = getToken();
@@ -22,6 +23,7 @@ function App() {
   return (
     <>
       <BrowserRouter basename={ROUTES_BASENAME}>
+        <Analytics />
         <ApiClientSetting />
         <Toaster />
         <Routes>

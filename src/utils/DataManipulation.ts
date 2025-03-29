@@ -1,5 +1,5 @@
 import { ItemProps } from "interfaces/Item";
-import { compareDateTime, compareNumber } from "./Date";
+import { compareDateTime } from "./Date";
 import { GetItemResponse } from "interfaces/API";
 
 export const responseToItem = (

@@ -1,1 +1,183 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#5886C7"/><meta name="description" content="A web page for checking Inha University students' online attendance and assignments at a glance"/><link rel="apple-touch-icon-precomposed" sizes="57x57" href="/aloha-react-frontend/icons/apple-touch-icon-57x57.png"/><link rel="apple-touch-icon-precomposed" sizes="114x114" href="/aloha-react-frontend/icons/apple-touch-icon-114x114.png"/><link rel="apple-touch-icon-precomposed" sizes="72x72" href="/aloha-react-frontend/icons/apple-touch-icon-72x72.png"/><link rel="apple-touch-icon-precomposed" sizes="144x144" href="/aloha-react-frontend/icons/apple-touch-icon-144x144.png"/><link rel="apple-touch-icon-precomposed" sizes="60x60" href="/aloha-react-frontend/icons/apple-touch-icon-60x60.png"/><link rel="apple-touch-icon-precomposed" sizes="120x120" href="/aloha-react-frontend/icons/apple-touch-icon-120x120.png"/><link rel="apple-touch-icon-precomposed" sizes="76x76" href="/aloha-react-frontend/icons/apple-touch-icon-76x76.png"/><link rel="apple-touch-icon-precomposed" sizes="152x152" href="/aloha-react-frontend/icons/apple-touch-icon-152x152.png"/><link rel="icon" type="image/png" href="/aloha-react-frontend/icons/favicon-196x196.png" sizes="196x196"/><link rel="icon" type="image/png" href="/aloha-react-frontend/icons/favicon-96x96.png" sizes="96x96"/><link rel="icon" type="image/png" href="/aloha-react-frontend/icons/favicon-32x32.png" sizes="32x32"/><link rel="icon" type="image/png" href="/aloha-react-frontend/icons/favicon-16x16.png" sizes="16x16"/><link rel="icon" type="image/png" href="/aloha-react-frontend/icons/favicon-128.png" sizes="128x128"/><meta name="msapplication-TileColor" content="#5886C7"/><meta name="msapplication-TileImage" content="/aloha-react-frontend/icons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="/aloha-react-frontend/icons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="/aloha-react-frontend/icons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="/aloha-react-frontend/icons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="/aloha-react-frontend/icons/mstile-310x310.png"/><link rel="manifest" href="/aloha-react-frontend/manifest.json"><title>Aloha Time</title><script type="text/javascript">!function(i){if(i.search){var a={};i.search.slice(1).split("&").forEach((function(i){var l=i.split("=");a[l[0]]=l.slice(1).join("=").replace(/~and~/g,"&")})),void 0!==a.p&&window.history.replaceState(null,null,i.pathname.slice(0,-1)+(a.p||"")+(a.q?"?"+a.q:"")+i.hash)}}(window.location)</script><script defer="defer" src="/aloha-react-frontend/static/js/main.deff3d8c.js"></script><link href="/aloha-react-frontend/static/css/main.5b6bc0b1.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#5886C7">
+  <meta name="description"
+    content="A web page for checking Inha University students' online attendance and assignments at a glance">
+
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/icons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/icons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/icons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/icons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/icons/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/icons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/icons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/icons/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/icons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icons/favicon-128.png" sizes="128x128">
+  <meta name="msapplication-TileColor" content="#5886C7">
+  <meta name="msapplication-TileImage" content="/icons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/icons/mstile-70x70.png">
+  <meta name="msapplication-square150x150logo" content="/icons/mstile-150x150.png">
+  <meta name="msapplication-wide310x150logo" content="/icons/mstile-310x150.png">
+  <meta name="msapplication-square310x310logo" content="/icons/mstile-310x310.png">
+
+  <title>Aloha Time</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overscroll-behavior: none;
+      position: fixed;
+      touch-action: pinch-zoom;
+    }
+
+    @font-face {
+      font-family: "tmoney";
+      src: url(http://localhost:3000/static/media/TmoneyRoundWindRegular.18aaa02c5151011453a0.ttf);
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: "tmoney bold";
+      src: url(http://localhost:3000/static/media/TmoneyRoundWindExtraBold.9f066654a62d2482c049.ttf);
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    * {
+      font-family: "tmoney";
+    }
+
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 20px;
+      font-size: 12px;
+      line-height: 12px;
+      outline: none;
+      background-color: #5886c7;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: #345b88;
+    }
+
+    .button:disabled {
+      background-color: #ddd;
+      color: #aaa;
+      cursor: not-allowed;
+    }
+
+    .img {
+      display: flex;
+      box-sizing: border-box;
+      width: 100vw;
+      height: 100vh;
+      padding: 20px 50px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      align-self: stretch;
+      max-width: 576px;
+      margin: 0 auto;
+    }
+
+    .min-width {
+      width: 120px;
+    }
+
+    .title {
+      color: #5886c7;
+      text-align: center;
+      font-family: "tmoney bold";
+      font-size: 35px;
+      font-style: normal;
+      font-weight: 800;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sub-title {
+      font-family: "tmoney bold";
+      font-size: 12px;
+      color: #999;
+      text-align: center;
+      margin: 0;
+    }
+
+    .text {
+      font-family: "tmoney bold";
+      font-size: 10px;
+      color: #999;
+      text-align: center;
+    }
+
+    .h-stack {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .outline {
+      color: #5886c7;
+      border: 1px solid #5886c7;
+      background-color: #fff;
+    }
+
+    .outline:hover {
+      color: #fff;
+      border-color: #fff;
+      background-color: #5886c7;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root">
+    <div style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;"></div>
+    <div class="img"><img src="/logo.png" class="min-width">
+      <h1 class="title">Aloha Time</h1>
+      <h2 class="sub-title">앱이 새 주소로 이전되었어요!</h2>
+      <span class="text">주소를 복사하거나 이동하기 버튼을 눌러 새로 설치해주세요</span>
+      <span class="text">https://aloha-react-frontend.vercel.app/</span>
+      <div class="h-stack">
+        <button class="button outline">복사하기</button>
+        <button class="button">이동하기</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    const copyButton = document.querySelector(".button.outline");
+    const moveButton = document.querySelector(".button:not(.outline)");
+
+    copyButton.addEventListener("click", () => {
+      navigator.clipboard.writeText("https://aloha-react-frontend.vercel.app/");
+      alert("주소가 복사되었습니다.");
+    });
+
+    moveButton.addEventListener("click", () => {
+      window.location.href = "https://aloha-react-frontend.vercel.app/";
+    });
+  </script>
+</body>
+
+</html>

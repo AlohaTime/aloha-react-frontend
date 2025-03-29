@@ -52,9 +52,9 @@
   "short_name": "Aloha Time",
   "description": "A web page for checking Inha University students' online attendance and assignments at a glance",
   "categories": ["education"],
-  "start_url": "https://alohatime.github.io/aloha-react-frontend/",
+  "start_url": "https://aloha-react-frontend.vercel.app/",
   "dir": "ltr",
-  "scope": "https://alohatime.github.io/aloha-react-frontend/",
+  "scope": "https://aloha-react-frontend.vercel.app/",
   "lang": "ko",
   "display": "fullscreen",
   "shortcuts": [
@@ -70,32 +70,32 @@
   ],
   "screenshots": [
     {
-      "src": "https://alohatime.github.io/aloha-react-frontend/screenshots/Screenshot-home.png",
+      "src": "https://aloha-react-frontend.vercel.app/screenshots/Screenshot-home.png",
       "sizes": "1080x720",
       "type": "image/png"
     },
     {
-      "src": "https://alohatime.github.io/aloha-react-frontend/screenshots/Screenshot-login.png",
+      "src": "https://aloha-react-frontend.vercel.app/screenshots/Screenshot-login.png",
       "sizes": "1080x720",
       "type": "image/png"
     },
     {
-      "src": "https://alohatime.github.io/aloha-react-frontend/screenshots/Screenshot-setting.png",
+      "src": "https://aloha-react-frontend.vercel.app/screenshots/Screenshot-setting.png",
       "sizes": "1080x720",
       "type": "image/png"
     },
     {
-      "src": "https://alohatime.github.io/aloha-react-frontend/screenshots/home.png",
+      "src": "https://aloha-react-frontend.vercel.app/screenshots/home.png",
       "sizes": "1080x720",
       "type": "image/png"
     },
     {
-      "src": "https://alohatime.github.io/aloha-react-frontend/screenshots/login.png",
+      "src": "https://aloha-react-frontend.vercel.app/screenshots/login.png",
       "sizes": "1080x720",
       "type": "image/png"
     },
     {
-      "src": "https://alohatime.github.io/aloha-react-frontend/screenshots/setting.png",
+      "src": "https://aloha-react-frontend.vercel.app/screenshots/setting.png",
       "sizes": "1080x720",
       "type": "image/png"
     }
